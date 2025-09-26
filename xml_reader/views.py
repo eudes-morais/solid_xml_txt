@@ -1,8 +1,10 @@
 # xml_reader/views.py
-
+import xmltodict
 from django.shortcuts import render
 from django.http import JsonResponse
-import xml.etree.ElementTree as ET
+from nfelog.infnfe import infnfe
+# import xml.etree.ElementTree as ET
+
 
 def upload_multiple_xml(request):
     if request.method == 'POST':
@@ -26,25 +28,41 @@ def upload_multiple_xml(request):
                 # Lê o conteúdo do arquivo
                 file_content = xml_file.read().decode('utf-8')
 
+                # Use xmltodict to parse and convert the XML document
+                dict_created = xmltodict.parse(file_content)
+
+                if list(dict_created)[0] == 'nfeProc':
+                    msg = "nfeProc"
+                elif list(dict_created)[0] == 'NFeLog':                    
+                    infnfe_dict = dict_created['NFeLog']['procNFe']['NFe']['infNFe'] # NF da SOLID
+                    msg = infnfe(infnfe_dict)
+                else:
+                    msg = "ainda não mapeado"
+                
+                msg = f'Arquivo {msg} parseado'
+
                 # Analisa (parse) o XML
-                root = ET.fromstring(file_content)
+                # root = ET.fromstring(file_content)
 
                 # Extrai os dados (neste exemplo, o nome do elemento raiz e o conteúdo formatado)
-                formatted_xml = ET.tostring(root, encoding='unicode', method='xml')
-                root_tag = root.tag
+                # formatted_xml = ET.tostring(root, encoding='unicode', method='xml')
+
+                # root_tag = root.tag
 
                 results.append({
                     'filename': xml_file.name,
                     'success': True,
-                    'root_tag': root_tag,
-                    'xml_content': formatted_xml
+                    # 'root_tag': root_tag,
+                    # 'xml_content': formatted_xml
+                    'root_tag': list(dict_created)[0],
+                    'xml_content': msg
                 })
-
-            except ET.ParseError:
-                results.append({
-                    'filename': xml_file.name,
-                    'error': 'Erro ao analisar o arquivo. Verifique o formato.'
-                })
+                    
+            # except ET.ParseError:
+            #     results.append({
+            #         'filename': xml_file.name,
+            #         'error': 'Erro ao analisar o arquivo. Verifique o formato.'
+            #     })
             except Exception as e:
                 results.append({
                     'filename': xml_file.name,
