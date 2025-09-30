@@ -48,12 +48,8 @@
             margin-bottom: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .result-card.error-card {
-            border-left: 5px solid #dc3545;
-        }
-        .result-card.success-card {
-            border-left: 5px solid #28a745;
-        }
+        .result-card.error-card { border-left: 5px solid #dc3545; }
+        .result-card.success-card { border-left: 5px solid #28a745; }
         .xml-content {
             white-space: pre-wrap;
             background-color: #2d2d2d;
@@ -64,10 +60,61 @@
             overflow-y: auto;
             font-family: monospace;
         }
-        .error-message {
-            color: #721c24;
-            font-weight: bold;
+        .error-message { color: #721c24; font-weight: bold; }
+
+        /* --- ESTILOS DO MODAL --- */
+        #modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none; /* Inicia oculto */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
+        #modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .input-item {
+            display: flex;
+            align-items: center;
+        }
+        .input-item input {
+            margin-right: 5px;
+        }
+        .modal-actions {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .modal-actions button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        #modal-submit { background-color: #28a745; color: white; }
+        #modal-cancel { background-color: #6c757d; color: white; }
     </style>
 </head>
 <body>
@@ -79,10 +126,67 @@
 
     <div id="results-container"></div>
 
+    <div id="modal-overlay">
+        <div id="modal-content">
+            <h3>Informações Adicionais</h3>
+            <p>Por favor, selecione as opções abaixo antes de enviar os arquivos.</p>
+            <form id="modal-form">
+                <div class="form-group">
+                    <label>Mês:</label>
+                    <div class="input-group">
+                        <div class="input-item"><input type="radio" id="mes1" name="mes" value="1" required><label for="mes1">Jan</label></div>
+                        <div class="input-item"><input type="radio" id="mes2" name="mes" value="2"><label for="mes2">Fev</label></div>
+                        <div class="input-item"><input type="radio" id="mes3" name="mes" value="3"><label for="mes3">Mar</label></div>
+                        <div class="input-item"><input type="radio" id="mes4" name="mes" value="4"><label for="mes4">Abr</label></div>
+                        <div class="input-item"><input type="radio" id="mes5" name="mes" value="5"><label for="mes5">Mai</label></div>
+                        <div class="input-item"><input type="radio" id="mes6" name="mes" value="6"><label for="mes6">Jun</label></div>
+                        <div class="input-item"><input type="radio" id="mes7" name="mes" value="7"><label for="mes7">Jul</label></div>
+                        <div class="input-item"><input type="radio" id="mes8" name="mes" value="8"><label for="mes8">Ago</label></div>
+                        <div class="input-item"><input type="radio" id="mes9" name="mes" value="9"><label for="mes9">Set</label></div>
+                        <div class="input-item"><input type="radio" id="mes10" name="mes" value="10"><label for="mes10">Out</label></div>
+                        <div class="input-item"><input type="radio" id="mes11" name="mes" value="11"><label for="mes11">Nov</label></div>
+                        <div class="input-item"><input type="radio" id="mes12" name="mes" value="12"><label for="mes12">Dez</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Ano:</label>
+                    <div class="input-group">
+                        <div class="input-item"><input type="radio" id="ano2023" name="ano" value="2023" required><label for="ano2023">2023</label></div>
+                        <div class="input-item"><input type="radio" id="ano2024" name="ano" value="2024"><label for="ano2024">2024</label></div>
+                        <div class="input-item"><input type="radio" id="ano2025" name="ano" value="2025"><label for="ano2025">2025</label></div>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label>Tipo de Operação:</label>
+                    <div class="input-group">
+                        <div class="input-item"><input type="checkbox" id="op1" name="tipo_operacao" value="comercializacao_nacional"><label for="op1">Comercialização Nacional</label></div>
+                        <div class="input-item"><input type="checkbox" id="op2" name="tipo_operacao" value="comercializacao_internacional"><label for="op2">Comercialização Internacional</label></div>
+                        <div class="input-item"><input type="checkbox" id="op3" name="tipo_operacao" value="producao"><label for="op3">Produção</label></div>
+                        <div class="input-item"><input type="checkbox" id="op4" name="tipo_operacao" value="transformacao"><label for="op4">Transformação</label></div>
+                        <div class="input-item"><input type="checkbox" id="op5" name="tipo_operacao" value="consumo"><label for="op5">Consumo</label></div>
+                        <div class="input-item"><input type="checkbox" id="op6" name="tipo_operacao" value="fabricacao"><label for="op6">Fabricação</label></div>
+                        <div class="input-item"><input type="checkbox" id="op7" name="tipo_operacao" value="transporte"><label for="op7">Transporte</label></div>
+                        <div class="input-item"><input type="checkbox" id="op8" name="tipo_operacao" value="armazenamento"><label for="op8">Armazenamento</label></div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="modal-cancel">Cancelar</button>
+                    <button type="submit" id="modal-submit">Confirmar e Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file-input');
         const resultsContainer = document.getElementById('results-container');
+        
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalForm = document.getElementById('modal-form');
+        const cancelButton = document.getElementById('modal-cancel');
+        
+        let pendingFiles = null;
 
         dropZone.addEventListener('click', () => fileInput.click());
         fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
@@ -110,19 +214,63 @@
         }, false);
 
         function handleFiles(files) {
-            resultsContainer.innerHTML = ''; // Limpa resultados anteriores
             if (files.length === 0) return;
+            pendingFiles = files;
+            modalOverlay.style.display = 'flex';
+        }
 
+        modalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // 1. Pega o valor único do radio button selecionado
+            const selectedMes = document.querySelector('input[name="mes"]:checked');
+            const selectedAno = document.querySelector('input[name="ano"]:checked');
+
+            // 2. Pega TODOS os checkboxes de operação e cria um objeto de status
+            const operacoesStatus = {};
+            const allOperacoes = document.querySelectorAll('input[name="tipo_operacao"]');
+            allOperacoes.forEach(checkbox => {
+                // A chave é o 'value' do checkbox, e o valor é '1' se marcado, '0' se não.
+                operacoesStatus[checkbox.value] = checkbox.checked ? '1' : '0';
+            });
+
+            // 3. Validação: Verifica se Mês e Ano estão selecionados.
+            if (!selectedMes || !selectedAno) {
+                alert('Por favor, selecione uma opção para Mês e Ano.');
+                return;
+            }
+
+            modalOverlay.style.display = 'none';
+            modalForm.reset();
+
+            // 4. Envia o valor de Mês/Ano e o objeto de status das operações
+            performUpload(pendingFiles, selectedMes.value, selectedAno.value, operacoesStatus);
+        });
+
+        cancelButton.addEventListener('click', () => {
+            modalOverlay.style.display = 'none';
+            modalForm.reset();
+            pendingFiles = null;
+        });
+
+        function performUpload(files, mes, ano, operacoes) {
+            resultsContainer.innerHTML = '';
             const formData = new FormData();
+            
+            // Adiciona os dados do modal ao FormData
+            formData.append('mes', mes);
+            formData.append('ano', ano);
+            
+            // Adiciona cada operação como um campo separado no FormData
+            for (const [operacao, status] of Object.entries(operacoes)) {
+                formData.append(operacao, status);
+            }
+
             for (const file of files) {
-                // Adiciona cada arquivo ao FormData
-                // O nome 'xml_files[]' corresponde ao que a view espera
                 formData.append('xml_files[]', file);
             }
 
             const csrftoken = getCookie('csrftoken');
-
-            // Mostra uma mensagem de carregamento
             dropZone.textContent = 'Processando arquivos...';
 
             fetch('', {
@@ -132,8 +280,9 @@
             })
             .then(response => response.json())
             .then(data => {
+                console.log('Dados recebidos pelo servidor:', data.dados_recebidos);
                 displayResults(data.results);
-                dropZone.textContent = 'Arraste e solte arquivos XML aqui ou clique para selecionar.'; // Restaura o texto
+                dropZone.textContent = 'Arraste e solte arquivos XML aqui ou clique para selecionar.';
             })
             .catch(error => {
                 console.error('Erro:', error);
@@ -144,24 +293,20 @@
 
         function displayResults(results) {
             if (!results || results.length === 0) return;
-
             results.forEach(result => {
                 const card = document.createElement('div');
                 card.classList.add('result-card');
-
                 let cardContent = `<h4>Arquivo: ${result.filename}</h4>`;
-
                 if (result.success) {
                     card.classList.add('success-card');
                     cardContent += `
+                        <p><strong>Status:</strong> ${escapeHtml(result.xml_content)}</p>
                         <p><strong>Elemento Raiz:</strong> ${result.root_tag}</p>
-                        <pre><code class="xml-content">${escapeHtml(result.xml_content)}</code></pre>
                     `;
                 } else {
                     card.classList.add('error-card');
                     cardContent += `<p class="error-message">Erro: ${result.error}</p>`;
                 }
-
                 card.innerHTML = cardContent;
                 resultsContainer.appendChild(card);
             });
@@ -182,7 +327,6 @@
             return cookieValue;
         }
         
-        // Função para escapar HTML e prevenir XSS ao exibir o conteúdo
         function escapeHtml(unsafe) {
             return unsafe
                  .replace(/&/g, "&amp;")
