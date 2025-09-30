@@ -1,6 +1,6 @@
 # xml_reader/views.py
 import xmltodict
-from nfelog import ide, infnfe, emit
+from utils.nfelog import ide, infnfe, emit
 from django.shortcuts import render
 from django.http import JsonResponse
 # import xml.etree.ElementTree as ET
