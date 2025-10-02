@@ -286,7 +286,7 @@
             })
             .catch(error => {
                 console.error('Erro:', error);
-                resultsContainer.innerHTML = `<div class="result-card error-card"><p class="error-message">Ocorreu um erro de comunicação com o servidor.</p></div>`;
+                resultsContainer.innerHTML = `<div class="result-card error-card"><p class="error-message">Ocorreu um erro no servidor.</p></div>`;
                 dropZone.textContent = 'Arraste e solte arquivos XML aqui ou clique para selecionar.';
             });
         }
@@ -300,7 +300,7 @@
                 if (result.success) {
                     card.classList.add('success-card');
                     cardContent += `
-                        <p><strong>Status:</strong> ${escapeHtml(result.xml_content)}</p>
+                        <p><strong>Status:</strong> ${result.xml_content}</p>
                         <p><strong>Elemento Raiz:</strong> ${result.root_tag}</p>
                     `;
                 } else {

@@ -25,8 +25,8 @@ def upload_multiple_xml(request):
 
         # Armazenando o status de cada operação numa lista
         list_status = ''
-        for operacao in tipos_de_operacao:
-            list_status = list_status + request.POST.get(operacao)
+        for op in tipos_de_operacao:
+            list_status = list_status + request.POST.get(op)
 
         # Para demonstração, vamos imprimi-los no console do servidor
         # print(f"Mês recebido: {mes}")
@@ -60,24 +60,33 @@ def upload_multiple_xml(request):
 
                 # Lê a primeira NF inserida para extrair as informações da seção EM
                 if indice == 1:
-                    cnpj = emit.emit(infnfe_dict)
+                    var_emit = emit.emit(infnfe_dict)
+                    cnpj = var_emit['cnpj']
                     em = f'EM{cnpj}{mes}{ano}{list_status}'
-                    print(em)
 
-                if list(dict_created)[0] == 'nfeProc':
-                    msg = "nfeProc"
-                elif list(dict_created)[0] == 'NFeLog':                                        
-                    msg = infnfe.infnfe(infnfe_dict)
-                else:
-                    msg = "Seção ainda não mapeada"
+                # if list(dict_created)[0] == 'nfeProc':
+                #     msg = "nfeProc"
+                # elif list(dict_created)[0] == 'NFeLog':                                        
+                #     msg = infnfe.infnfe(infnfe_dict)
+                # else:
+                #     msg = "Seção ainda não mapeada"
                 
-                msg = f'Arquivo {msg} parseado'
+                # msg = f'Arquivo {msg} parseado'
+                
+                # Seção MVN
+                var_ide = ide.ide(infnfe_dict)
+                entrada_saida = var_ide['entrada_saida']
+                operacao = var_ide['operacao']
+                razao_social = var_emit['razao_social']
+                data_emissao_nf = var_ide['data_emissao_nf']
                 
                 results.append({
                     'filename': xml_file.name,
                     'success': True,
-                    'root_tag': list(dict_created)[0],
-                    'xml_content': msg
+                    # 'root_tag': list(dict_created)[0],
+                    'root_tag': 'Lido com sucesso!',
+                    # 'xml_content': msg
+                    'xml_content': f'{em}\n{entrada_saida}{operacao}{razao_social}{data_emissao_nf}'
                 })
                     
             except Exception as e:
