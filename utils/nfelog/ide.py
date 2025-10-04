@@ -8,37 +8,18 @@ def ide(level_dict):
     # MVN - Operação
     for palavra in ide['natOp'].split():
         if entrada_saida == 'E':
-            if palavra.upper() == 'COMPRA':
-                operacao = 'C'
-            elif palavra.upper() == 'TRANSFERÊNCIA':
-                operacao = 'T'
-            elif palavra.upper() == 'DOAÇÃO':
-                operacao = 'D'
-            elif palavra.upper() == 'ARMAZENADO':
-                operacao = 'A'
-            elif palavra.upper() == 'INDUSTRIALIZADO':
-                operacao = 'P'
-            elif palavra.upper() == 'INDUSTRIALIZAÇÃO':
-                operacao = 'I'
-            else:
-                operacao = 'R'
+            if (palavra.upper() == 'COMPRA' or palavra.upper() == 'TRANSFERÊNCIA' or palavra.upper() == 'DOAÇÃO' or palavra.upper() == 'ARMAZENADO'
+                or palavra.upper() == 'INDUSTRIALIZADO' or palavra.upper() == 'INDUSTRIALIZAÇÃO'):
+                operacao = palavra[0].upper()
+                break
+            operacao = 'R'
+            
         else:
-            if palavra.upper() == 'VENDA':
-                operacao = 'V'
-            elif palavra.upper() == 'TRANSFERÊNCIA':
-                operacao = 'T'
-            elif palavra.upper() == 'DOAÇÃO':
-                operacao = 'D'
-            elif palavra.upper() == 'ARMAZENADO':
-                operacao = 'A'
-            elif palavra.upper() == 'INDUSTRIALIZADO':
-                operacao = 'I'
-            elif palavra.upper() == 'INDUSTRIALIZAÇÃO':
-                operacao = 'P'
-            elif palavra.upper() == 'ARMAZENAGEM':
-                operacao = 'R'
-            else:
-                operacao = 'S'
+            if (palavra.upper() == 'VENDA' or palavra.upper() == 'TRANSFERÊNCIA' or palavra.upper() == 'DOAÇÃO' or palavra.upper() == 'ARMAZENADO' 
+                or palavra.upper() == 'INDUSTRIALIZADO' or palavra.upper() == 'INDUSTRIALIZAÇÃO' or palavra.upper() == 'ARMAZENAGEM'):
+                operacao = palavra[0].upper()
+                break
+            operacao = 'S'
 
     # MVN - Número NF
     numero_nf = ide['nNF']
