@@ -7,7 +7,7 @@ def emit(level_dict):
 
     # MVN - Razão Social Adq/Fornec
     razao_social = emit['xNome']
-    razao_social = razao_social.upper().ljust(69) # Preenche com espaços vazios à direita
+    razao_social = razao_social.upper()
 
     result_emit = {
         'cnpj': cnpj,

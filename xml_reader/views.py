@@ -1,6 +1,6 @@
 # xml_reader/views.py
 import xmltodict
-from utils.nfelog import ide, infnfe, emit, dest
+from utils.nfelog import ide, infnfe, emit, dest, transp
 from django.shortcuts import render
 from django.http import JsonResponse
 # import xml.etree.ElementTree as ET
@@ -56,14 +56,18 @@ def upload_multiple_xml(request):
 
                 # Use xmltodict to parse and convert the XML document
                 dict_created = xmltodict.parse(file_content)
-                infnfe_dict = dict_created['NFeLog']['procNFe']['NFe']['infNFe'] # NF da SOLID
+                
+                if list(dict_created)[0] == 'nfeProc':
+                    infnfe_dict = dict_created['nfeProc']['NFe']['infNFe'] # NF da SOLID
+                else:
+                    infnfe_dict = dict_created['NFeLog']['procNFe']['NFe']['infNFe'] # NF da SOLID
 
                 # Lê a primeira NF inserida para extrair as informações da seção EM
                 # Seção EM
                 if indice == 1:
                     var_emit = emit.emit(infnfe_dict)
-                    cnpj = var_emit['cnpj']
-                    em = f'EM{cnpj}{mes}{ano}{list_status}'
+                    cnpj_emitente = var_emit['cnpj']
+                    em = f'EM{cnpj_emitente}{mes}{ano}{list_status}'
                 
                 # Seção MVN
                 var_ide = ide.ide(infnfe_dict)
@@ -71,24 +75,16 @@ def upload_multiple_xml(request):
                 operacao = var_ide['operacao']
                 razao_social = var_emit['razao_social']
                 data_emissao_nf = var_ide['data_emissao_nf']
-                if entrada_saida == 'E' :
-                    local_armazenagem = dest.dest(infnfe_dict)
-                    if razao_social == local_armazenagem['nome']:
-                        armazenagem = 'S'
-                    else:
-                        armazenagem = 'N'
-                else:
-                    resp_armazenagem = dest.dest(infnfe_dict)
-                    if razao_social == resp_armazenagem['nome']:
-                        armazenagem = 'F'
-                    else:
-                        armazenagem = 'T'
+                destinatario = dest.dest(infnfe_dict, razao_social, entrada_saida)
+                armazenagem = destinatario['armazenagem']
+                cnpj_destinatario = destinatario['cnpj'] # CNPJ utilizado para verificar o responsável pelo transporte
+                transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_emitente)
 
                 results.append({
                     'filename': xml_file.name,
                     'success': True,
                     'root_tag': 'Lido com sucesso!',
-                    'xml_content': f'{em}\n{entrada_saida}{operacao}{razao_social}{data_emissao_nf}{armazenagem}'
+                    'xml_content': f'{em}\n{entrada_saida}{operacao}{razao_social.ljust(69)}{data_emissao_nf}{armazenagem}{transporte}'
                 })
                     
             except Exception as e:
