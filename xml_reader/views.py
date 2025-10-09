@@ -75,12 +75,13 @@ def upload_multiple_xml(request):
                 entrada_saida = var_ide['entrada_saida']
                 operacao = var_ide['operacao']
                 razao_social = var_emit['razao_social']
+                razao_social = razao_social.ljust(69)
                 data_emissao_nf = var_ide['data_emissao_nf']
                 destinatario = dest.dest(infnfe_dict, cnpj_emitente, entrada_saida)
                 armazenagem = destinatario['armazenagem']
                 cnpj_destinatario = destinatario['cnpj'] # CNPJ utilizado para verificar o responsável pelo transporte
                 transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_emitente)
-                secao_mvn = f'MVN{entrada_saida}{operacao}{razao_social.ljust(69)}{data_emissao_nf}{armazenagem}{transporte}'
+                secao_mvn = f'MVN{entrada_saida}{operacao}{razao_social}{data_emissao_nf}{armazenagem}{transporte}'
 
                 # Subseção MM
                 var_det = det.det(infnfe_dict)
@@ -95,7 +96,6 @@ def upload_multiple_xml(request):
                 results.append({
                     'filename': xml_file.name,
                     'success': True,
-                    'root_tag': 'Lido com sucesso!',
                     'xml_content': txt
                 })
                     

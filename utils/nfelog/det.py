@@ -31,6 +31,8 @@ def det(infnfe_dict):
         unidade_medida = infnfe_dict['det']['prod']['uCom']
         unidade_medida = unidade_medida[0].upper()
     
+    print(codigo_tpn)
+    
     result_det = {
         'codigo_tpn': codigo_tpn,
         'quantidade': quantidade,
@@ -49,6 +51,7 @@ def ler_codigo_ncm(ncm):
         # Use xmltodict to parse and convert the XML document
         dict_tpn = xmltodict.parse(file_xml)
 
+        tpn = 'PR00000000'
         for codigo_ncm in dict_tpn['produtos']['produto']:
             if codigo_ncm['codigoNcm'] == ncm:
                 codigo_produto_ncm = codigo_ncm['codigoProdutoNcm']
