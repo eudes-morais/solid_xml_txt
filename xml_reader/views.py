@@ -1,6 +1,6 @@
 # xml_reader/views.py
 import xmltodict
-from utils.nfelog import ide, infnfe, emit, dest, transp
+from utils.nfelog import ide, infnfe, emit, dest, transp,det
 from django.shortcuts import render
 from django.http import JsonResponse
 # import xml.etree.ElementTree as ET
@@ -62,12 +62,13 @@ def upload_multiple_xml(request):
                 else:
                     infnfe_dict = dict_created['NFeLog']['procNFe']['NFe']['infNFe'] # NF da SOLID
 
-                # Lê a primeira NF inserida para extrair as informações da seção EM
-                # Seção EM
+                # Lê a primeira NF inserida para extrair as informações para a seção EM
+                secao_em = ''
                 if indice == 1:
+                    # Seção EM
                     var_emit = emit.emit(infnfe_dict)
                     cnpj_emitente = var_emit['cnpj']
-                    em = f'EM{cnpj_emitente}{mes}{ano}{list_status}'
+                    secao_em = f'EM{cnpj_emitente}{mes}{ano}{list_status}\n'
                 
                 # Seção MVN
                 var_ide = ide.ide(infnfe_dict)
@@ -75,16 +76,27 @@ def upload_multiple_xml(request):
                 operacao = var_ide['operacao']
                 razao_social = var_emit['razao_social']
                 data_emissao_nf = var_ide['data_emissao_nf']
-                destinatario = dest.dest(infnfe_dict, razao_social, entrada_saida)
+                destinatario = dest.dest(infnfe_dict, cnpj_emitente, entrada_saida)
                 armazenagem = destinatario['armazenagem']
                 cnpj_destinatario = destinatario['cnpj'] # CNPJ utilizado para verificar o responsável pelo transporte
                 transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_emitente)
+                secao_mvn = f'MVN{entrada_saida}{operacao}{razao_social.ljust(69)}{data_emissao_nf}{armazenagem}{transporte}'
+
+                # Subseção MM
+                var_det = det.det(infnfe_dict)
+                ncm = var_det['codigo_tpn']
+                quantidade = var_det['quantidade']
+                unidade_medida = var_det['unidade_medida']
+                subsecao_mm = f'MM{ncm}00000,00{quantidade}{unidade_medida}'
+
+                txt = f'{secao_em}{secao_mvn}\n{subsecao_mm}'
+                print(txt)
 
                 results.append({
                     'filename': xml_file.name,
                     'success': True,
                     'root_tag': 'Lido com sucesso!',
-                    'xml_content': f'{em}\n{entrada_saida}{operacao}{razao_social.ljust(69)}{data_emissao_nf}{armazenagem}{transporte}'
+                    'xml_content': txt
                 })
                     
             except Exception as e:

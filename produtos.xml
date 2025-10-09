@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<produtos>
+    <produto>
+        <codigoProdutoNcm>TPN404888</codigoProdutoNcm>
+        <nomeProduto>DILTIAZEM</nomeProduto>
+        <codigoNcm>29349949</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN405889</codigoProdutoNcm>
+        <nomeProduto>HIDROXIZINA</nomeProduto>
+        <codigoNcm>29335919</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN406890</codigoProdutoNcm>
+        <nomeProduto>LEVAMISOL</nomeProduto>
+        <codigoNcm>29349953</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN407891</codigoProdutoNcm>
+        <nomeProduto>PARACETAMOL</nomeProduto>
+        <codigoNcm>29242913</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN408892</codigoProdutoNcm>
+        <nomeProduto>TEOFILINA</nomeProduto>
+        <codigoNcm>29395910</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN409893</codigoProdutoNcm>
+        <nomeProduto>TETRACAÍNA</nomeProduto>
+        <codigoNcm>29224990</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN410894</codigoProdutoNcm>
+        <nomeProduto>TETRAMISOL</nomeProduto>
+        <codigoNcm>29349952</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN411895</codigoProdutoNcm>
+        <nomeProduto>CIANOBOROHIDRETO DE SÓDIO</nomeProduto>
+        <codigoNcm>28372011</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN412896</codigoProdutoNcm>
+        <nomeProduto>DIÓXIDO DE MANGANÊS</nomeProduto>
+        <codigoNcm>28201000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN413897</codigoProdutoNcm>
+        <nomeProduto>METABISSULFITO DE SÓDIO</nomeProduto>
+        <codigoNcm>28321090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN414898</codigoProdutoNcm>
+        <nomeProduto>ÓXIDO DE MANGANÊS</nomeProduto>
+        <codigoNcm>28200000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12441028</codigoProdutoNcm>
+        <nomeProduto>ÓXIDO DE CÁLCIO, OUTROS</nomeProduto>
+        <codigoNcm>28259090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12451029</codigoProdutoNcm>
+        <nomeProduto>PENTACLORETO DE FÓSFORO</nomeProduto>
+        <codigoNcm>28121400</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12461030</codigoProdutoNcm>
+        <nomeProduto>PERMANGANATO DE POTÁSSIO</nomeProduto>
+        <codigoNcm>28416100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12471031</codigoProdutoNcm>
+        <nomeProduto>PERÓXIDO DE HIDROGÊNIO</nomeProduto>
+        <codigoNcm>28470000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12481032</codigoProdutoNcm>
+        <nomeProduto>PIPERIDINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29333200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12491033</codigoProdutoNcm>
+        <nomeProduto>PIPERONAL</nomeProduto>
+        <codigoNcm>29329300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12501034</codigoProdutoNcm>
+        <nomeProduto>PIRIDINA</nomeProduto>
+        <codigoNcm>29333110</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12511034</codigoProdutoNcm>
+        <nomeProduto>PIRIDINA, SAIS</nomeProduto>
+        <codigoNcm>29333120</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12521036</codigoProdutoNcm>
+        <nomeProduto>PROCAÍNA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29224990</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12531037</codigoProdutoNcm>
+        <nomeProduto>PROPIOFENONA</nomeProduto>
+        <codigoNcm>29143990</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12541038</codigoProdutoNcm>
+        <nomeProduto>PSEUDOEFEDRINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29394200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12551039</codigoProdutoNcm>
+        <nomeProduto>QUEROSENE (DE AVIAÇÃO)</nomeProduto>
+        <codigoNcm>27101911</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12561039</codigoProdutoNcm>
+        <nomeProduto>QUEROSENE, OUTROS</nomeProduto>
+        <codigoNcm>27101919</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12571041</codigoProdutoNcm>
+        <nomeProduto>SAFROL</nomeProduto>
+        <codigoNcm>29329400</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12591043</codigoProdutoNcm>
+        <nomeProduto>SULFATO DE SÓDIO ANIDRO</nomeProduto>
+        <codigoNcm>28331110</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12611045</codigoProdutoNcm>
+        <nomeProduto>TETRACLOROETILENO</nomeProduto>
+        <codigoNcm>29032300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12621046</codigoProdutoNcm>
+        <nomeProduto>TETRAHIDROFURANO</nomeProduto>
+        <codigoNcm>29321100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12641048</codigoProdutoNcm>
+        <nomeProduto>TOLUENO (OUTROS)</nomeProduto>
+        <codigoNcm>29023000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12651048</codigoProdutoNcm>
+        <nomeProduto>TOLUENO (TOLUOL)</nomeProduto>
+        <codigoNcm>27072000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12661050</codigoProdutoNcm>
+        <nomeProduto>TRICLOROETILENO</nomeProduto>
+        <codigoNcm>29032200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12671051</codigoProdutoNcm>
+        <nomeProduto>URÉIA (TEOR DE N &gt; 45%, EM PESO)</nomeProduto>
+        <codigoNcm>31021010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12681051</codigoProdutoNcm>
+        <nomeProduto>URÉIA, OUTRAS</nomeProduto>
+        <codigoNcm>31021090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12691053</codigoProdutoNcm>
+        <nomeProduto>XILENOS (MISTURA DE ISÔMEROS DO XILENO)</nomeProduto>
+        <codigoNcm>29024400</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12701053</codigoProdutoNcm>
+        <nomeProduto>XILENOS (M-XILENO)</nomeProduto>
+        <codigoNcm>29024200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12711053</codigoProdutoNcm>
+        <nomeProduto>XILENOS (O-XILENO)</nomeProduto>
+        <codigoNcm>29024100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12721053</codigoProdutoNcm>
+        <nomeProduto>XILENOS (P-XILENO)</nomeProduto>
+        <codigoNcm>29024300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12731053</codigoProdutoNcm>
+        <nomeProduto>XILENOS (XILOL)</nomeProduto>
+        <codigoNcm>27073000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12741053</codigoProdutoNcm>
+        <nomeProduto>XILENOS, OUTROS</nomeProduto>
+        <codigoNcm>29029090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12761055</codigoProdutoNcm>
+        <nomeProduto>1,2-DICLOROETANO</nomeProduto>
+        <codigoNcm>29031500</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12771056</codigoProdutoNcm>
+        <nomeProduto>1-FENIL-2-PROPANONA</nomeProduto>
+        <codigoNcm>29143100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12791058</codigoProdutoNcm>
+        <nomeProduto>3,4-METILENODIOXIFENIL-2-PROPANONA</nomeProduto>
+        <codigoNcm>29329200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12811060</codigoProdutoNcm>
+        <nomeProduto>ACETATO DE ETILA  </nomeProduto>
+        <codigoNcm>29153100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12821061</codigoProdutoNcm>
+        <nomeProduto>ACETATO DE ISOAMILA</nomeProduto>
+        <codigoNcm>29153939</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12831062</codigoProdutoNcm>
+        <nomeProduto>ACETATO DE ISOBUTILA</nomeProduto>
+        <codigoNcm>29153939</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12841063</codigoProdutoNcm>
+        <nomeProduto>ACETATO DE ISOPROPILA</nomeProduto>
+        <codigoNcm>29153939</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12851064</codigoProdutoNcm>
+        <nomeProduto>ACETATO DE n-BUTILA </nomeProduto>
+        <codigoNcm>29153300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12861065</codigoProdutoNcm>
+        <nomeProduto>ACETATO DE n-PROPILA </nomeProduto>
+        <codigoNcm>29153931</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12871066</codigoProdutoNcm>
+        <nomeProduto>ACETATO DE sec-BUTILA</nomeProduto>
+        <codigoNcm>29153939</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12881067</codigoProdutoNcm>
+        <nomeProduto>ACETONA</nomeProduto>
+        <codigoNcm>29141100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12901069</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO ACÉTICO  </nomeProduto>
+        <codigoNcm>29152100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12911070</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO ANTRANÍLICO E SEUS SAIS</nomeProduto>
+        <codigoNcm>29224300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12921071</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO BENZÓICO </nomeProduto>
+        <codigoNcm>29163110</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12931072</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO BÓRICO E SEUS SAIS</nomeProduto>
+        <codigoNcm>28100010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12941073</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO BROMÍDRICO</nomeProduto>
+        <codigoNcm>28111990</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12951074</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO CLORÍDRICO (ESTADO GASOSO)</nomeProduto>
+        <codigoNcm>28061010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12961074</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO CLORÍDRICO (SOLUÇÃO AQUOSA)</nomeProduto>
+        <codigoNcm>28061020</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12971076</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO CLOROSSULFÔNICO</nomeProduto>
+        <codigoNcm>28062000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12981077</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO FENILACÉTICO, SEUS SAIS E ÉSTERES</nomeProduto>
+        <codigoNcm>29163400</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN12991078</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO FÓRMICO </nomeProduto>
+        <codigoNcm>29151100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13001079</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO HIPOFOSFOROSO</nomeProduto>
+        <codigoNcm>28111990</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13011080</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO IODÍDRICO</nomeProduto>
+        <codigoNcm>28111990</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13021081</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO LISÉRGICO E SEUS SAIS</nomeProduto>
+        <codigoNcm>29396300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13031082</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO N-ACETILANTRANÍLICO E SEUS SAIS</nomeProduto>
+        <codigoNcm>29242300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13041083</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO ORTOFOSFÓRICO (teor de Fe &lt; 750 ppm)</nomeProduto>
+        <codigoNcm>28092011</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13051083</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO ORTOFOSFÓRICO, OUTROS</nomeProduto>
+        <codigoNcm>28092019</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13061084</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO SULFÚRICO</nomeProduto>
+        <codigoNcm>28070010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13071084</codigoProdutoNcm>
+        <nomeProduto>ÁCIDO SULFÚRICO FUMEGANTE</nomeProduto>
+        <codigoNcm>28070020</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13081085</codigoProdutoNcm>
+        <nomeProduto>AGUARRÁS MINERAL (WHITE SPIRIT E QUALQUER PRODUTO SIMILAR)</nomeProduto>
+        <codigoNcm>27101230</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13091085</codigoProdutoNcm>
+        <nomeProduto>NAFTAS PARA PETROQUÍMICA</nomeProduto>
+        <codigoNcm>27101241</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13101085</codigoProdutoNcm>
+        <nomeProduto>AGUARRÁS MINERAL, OUTRAS</nomeProduto>
+        <codigoNcm>27101249</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13111086</codigoProdutoNcm>
+        <nomeProduto>ÁLCOOL ETÍLICO (TEOR DE H2O &lt;= 1% Vol)</nomeProduto>
+        <codigoNcm>22071010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13121086</codigoProdutoNcm>
+        <nomeProduto>ÁLCOOL ETÍLICO (OUTROS)</nomeProduto>
+        <codigoNcm>22071090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13131087</codigoProdutoNcm>
+        <nomeProduto>ÁLCOOL ISOBUTÍLICO </nomeProduto>
+        <codigoNcm>29051410</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13141088</codigoProdutoNcm>
+        <nomeProduto>ÁLCOOL ISOPROPÍLICO</nomeProduto>
+        <codigoNcm>29051220</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13151089</codigoProdutoNcm>
+        <nomeProduto>ÁLCOOL METÍLICO</nomeProduto>
+        <codigoNcm>29051100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13161090</codigoProdutoNcm>
+        <nomeProduto>ÁLCOOL N-BUTÍLICO</nomeProduto>
+        <codigoNcm>29051300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13171091</codigoProdutoNcm>
+        <nomeProduto>ÁLCOOL N-PROPÍLICO</nomeProduto>
+        <codigoNcm>29051210</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13181092</codigoProdutoNcm>
+        <nomeProduto>ÁLCOOL SEC-BUTÍLICO </nomeProduto>
+        <codigoNcm>29051420</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13201094</codigoProdutoNcm>
+        <nomeProduto>AMINOPIRINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29333999</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13211095</codigoProdutoNcm>
+        <nomeProduto>AMÔNIA (GÁS - AMONÍACO ANIDRO)</nomeProduto>
+        <codigoNcm>28141000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13221096</codigoProdutoNcm>
+        <nomeProduto>ANIDRIDO ACÉTICO</nomeProduto>
+        <codigoNcm>29152400</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13251099</codigoProdutoNcm>
+        <nomeProduto>ANIDRIDO PROPIÔNICO</nomeProduto>
+        <codigoNcm>29159090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13261100</codigoProdutoNcm>
+        <nomeProduto>BENZALDEÍDO</nomeProduto>
+        <codigoNcm>29122100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13271101</codigoProdutoNcm>
+        <nomeProduto>BENZENO (OUTROS)</nomeProduto>
+        <codigoNcm>29022000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13281101</codigoProdutoNcm>
+        <nomeProduto>BENZENO (BENZOL)</nomeProduto>
+        <codigoNcm>27071000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13291102</codigoProdutoNcm>
+        <nomeProduto>BENZOCAÍNA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29224990</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13301103</codigoProdutoNcm>
+        <nomeProduto>BICARBONATO DE POTÁSSIO</nomeProduto>
+        <codigoNcm>28364000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13311104</codigoProdutoNcm>
+        <nomeProduto>BICARBONATO DE SÓDIO</nomeProduto>
+        <codigoNcm>28363000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13321105</codigoProdutoNcm>
+        <nomeProduto>BOROHIDRETO DE SÓDIO</nomeProduto>
+        <codigoNcm>28500090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13331106</codigoProdutoNcm>
+        <nomeProduto>BROMOBENZENO</nomeProduto>
+        <codigoNcm>29039921</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13341107</codigoProdutoNcm>
+        <nomeProduto>BUTILAMINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29211939</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13351108</codigoProdutoNcm>
+        <nomeProduto>CAFEÍNA</nomeProduto>
+        <codigoNcm>29393010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13361108</codigoProdutoNcm>
+        <nomeProduto>CAFEÍNA, SAIS</nomeProduto>
+        <codigoNcm>29393020</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13371109</codigoProdutoNcm>
+        <nomeProduto>CARBONATO DE CÁLCIO</nomeProduto>
+        <codigoNcm>28365000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13381110</codigoProdutoNcm>
+        <nomeProduto>CARBONATO DE POTÁSSIO</nomeProduto>
+        <codigoNcm>28364000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13391111</codigoProdutoNcm>
+        <nomeProduto>CARBONATO DE SÓDIO ANIDRO</nomeProduto>
+        <codigoNcm>28362010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13401111</codigoProdutoNcm>
+        <nomeProduto>CARBONATO DISSÓDICO (outros)</nomeProduto>
+        <codigoNcm>28362090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13411113</codigoProdutoNcm>
+        <nomeProduto>CARVÃO ATIVADO</nomeProduto>
+        <codigoNcm>38021000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13421114</codigoProdutoNcm>
+        <nomeProduto>CIANETO DE BENZILA</nomeProduto>
+        <codigoNcm>29269099</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13431115</codigoProdutoNcm>
+        <nomeProduto>CIANETO DE BROMOBENZILA</nomeProduto>
+        <codigoNcm>29269099</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13441116</codigoProdutoNcm>
+        <nomeProduto>CICLOEXANO</nomeProduto>
+        <codigoNcm>29021100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13451117</codigoProdutoNcm>
+        <nomeProduto>CICLOEXANONA</nomeProduto>
+        <codigoNcm>29142210</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13461118</codigoProdutoNcm>
+        <nomeProduto>CIMENTO PORTLAND OU DO TIPO PORTLAND (CIMENTO COMUM)</nomeProduto>
+        <codigoNcm>25232910</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13471118</codigoProdutoNcm>
+        <nomeProduto>CIMENTO PORTLAND OU DO TIPO PORTLAND, OUTROS</nomeProduto>
+        <codigoNcm>25232990</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13481119</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE ACETILA</nomeProduto>
+        <codigoNcm>29159090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13491120</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE ALUMÍNIO</nomeProduto>
+        <codigoNcm>28273200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13501121</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE AMÔNIO</nomeProduto>
+        <codigoNcm>28271000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13511122</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE BENZILA</nomeProduto>
+        <codigoNcm>29039911</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13531124</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE CÁLCIO ANIDRO</nomeProduto>
+        <codigoNcm>28272010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13541124</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE CÁLCIO (OUTROS)</nomeProduto>
+        <codigoNcm>28272090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13551125</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE ETILA</nomeProduto>
+        <codigoNcm>29031120</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13561126</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE METILENO</nomeProduto>
+        <codigoNcm>29031200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13581128</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE MERCÚRIO</nomeProduto>
+        <codigoNcm>28273999</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13591129</codigoProdutoNcm>
+        <nomeProduto>CLOROFÓRMIO</nomeProduto>
+        <codigoNcm>29031300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13601130</codigoProdutoNcm>
+        <nomeProduto>CROMATO DE POTÁSSIO</nomeProduto>
+        <codigoNcm>28415012</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13621132</codigoProdutoNcm>
+        <nomeProduto>DIACETONA ÁLCOOL</nomeProduto>
+        <codigoNcm>29144010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13631133</codigoProdutoNcm>
+        <nomeProduto>DICROMATO DE POTÁSSIO</nomeProduto>
+        <codigoNcm>28415014</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13641134</codigoProdutoNcm>
+        <nomeProduto>DICROMATO DE SÓDIO</nomeProduto>
+        <codigoNcm>28413000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13651135</codigoProdutoNcm>
+        <nomeProduto>DIETILAMINA (ETANSILATO E OUTROS)</nomeProduto>
+        <codigoNcm>29211919</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13661135</codigoProdutoNcm>
+        <nomeProduto>DIETILAMINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29211915</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13671136</codigoProdutoNcm>
+        <nomeProduto>DIPIRONA</nomeProduto>
+        <codigoNcm>29331111</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13681136</codigoProdutoNcm>
+        <nomeProduto>DIPIRONA (Magnopirol, Dipirona Magnésica)</nomeProduto>
+        <codigoNcm>29331112</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13691136</codigoProdutoNcm>
+        <nomeProduto>DIPIRONA SODICA (OUTS.AC.1-FENIL-2,3-DIMETIL-5-PIRAZOLONA,ETC.)</nomeProduto>
+        <codigoNcm>29331119</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13711138</codigoProdutoNcm>
+        <nomeProduto>EFEDRINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29394100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13721139</codigoProdutoNcm>
+        <nomeProduto>ERGOMETRINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29396100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13731140</codigoProdutoNcm>
+        <nomeProduto>ERGOTAMINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29396200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13741141</codigoProdutoNcm>
+        <nomeProduto>ETAEFEDRINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29394900</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13751142</codigoProdutoNcm>
+        <nomeProduto>ÉTER DE PETRÓLEO</nomeProduto>
+        <codigoNcm>27101290</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13761143</codigoProdutoNcm>
+        <nomeProduto>ÉTER ETÍLICO</nomeProduto>
+        <codigoNcm>29091100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13771144</codigoProdutoNcm>
+        <nomeProduto>ETILAMINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29211911</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13781145</codigoProdutoNcm>
+        <nomeProduto>FENACETINA</nomeProduto>
+        <codigoNcm>29242919</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13791146</codigoProdutoNcm>
+        <nomeProduto>FENILETANOLAMINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29221999</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13801147</codigoProdutoNcm>
+        <nomeProduto>FORMAMIDA</nomeProduto>
+        <codigoNcm>29241929</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13811148</codigoProdutoNcm>
+        <nomeProduto>FORMIATO DE AMÔNIO</nomeProduto>
+        <codigoNcm>29151290</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13821149</codigoProdutoNcm>
+        <nomeProduto>FÓSFORO VERMELHO</nomeProduto>
+        <codigoNcm>28047020</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13831150</codigoProdutoNcm>
+        <nomeProduto>GAMA-BUTIROLACTONA (GBL) (outras lactonas)</nomeProduto>
+        <codigoNcm>29322000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13841151</codigoProdutoNcm>
+        <nomeProduto>GASOLINA DE AVIAÇÃO</nomeProduto>
+        <codigoNcm>27101251</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13851151</codigoProdutoNcm>
+        <nomeProduto>GASOLINA (outras)</nomeProduto>
+        <codigoNcm>27101259</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13861152</codigoProdutoNcm>
+        <nomeProduto>HIDRETO DE ALUMÍNIO E LÍTIO</nomeProduto>
+        <codigoNcm>28500090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13871153</codigoProdutoNcm>
+        <nomeProduto>HIDRÓXIDO DE AMÔNIO (AMONÍACO EM SOLUÇÃO AQUOSA)</nomeProduto>
+        <codigoNcm>28142000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13881154</codigoProdutoNcm>
+        <nomeProduto>HIDRÓXIDO DE CÁLCIO (CAL APAGADA)</nomeProduto>
+        <codigoNcm>25222000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13891154</codigoProdutoNcm>
+        <nomeProduto>HIDRÓXIDO DE CÁLCIO, OUTROS</nomeProduto>
+        <codigoNcm>28259090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13901155</codigoProdutoNcm>
+        <nomeProduto>HIDRÓXIDO DE POTÁSSIO</nomeProduto>
+        <codigoNcm>28152000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13911156</codigoProdutoNcm>
+        <nomeProduto>HIDRÓXIDO DE SÓDIO (EM SOLUÇÃO AQUOSA)</nomeProduto>
+        <codigoNcm>28151200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13921156</codigoProdutoNcm>
+        <nomeProduto>HIDRÓXIDO DE SÓDIO (SÓLIDO)</nomeProduto>
+        <codigoNcm>28151100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13931157</codigoProdutoNcm>
+        <nomeProduto>HIDROXILAMINA E SEUS SAIS</nomeProduto>
+        <codigoNcm>28251020</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13941158</codigoProdutoNcm>
+        <nomeProduto>HIPOCLORITO DE SÓDIO</nomeProduto>
+        <codigoNcm>28289011</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13951159</codigoProdutoNcm>
+        <nomeProduto>IODO (SUBLIMADO)</nomeProduto>
+        <codigoNcm>28012010</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13961160</codigoProdutoNcm>
+        <nomeProduto>ISOSAFROL</nomeProduto>
+        <codigoNcm>29329100</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN13971161</codigoProdutoNcm>
+        <nomeProduto>LIDOCAÍNA E SEUS SAIS</nomeProduto>
+        <codigoNcm>29242914</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14041164</codigoProdutoNcm>
+        <nomeProduto>MANITOL</nomeProduto>
+        <codigoNcm>29054300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14051165</codigoProdutoNcm>
+        <nomeProduto>METILAMINA</nomeProduto>
+        <codigoNcm>29211111</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14061165</codigoProdutoNcm>
+        <nomeProduto>METILAMINA, SAIS</nomeProduto>
+        <codigoNcm>29211112</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14071166</codigoProdutoNcm>
+        <nomeProduto>METILERGOMETRINA, E SEUS SAIS (OUTROS)</nomeProduto>
+        <codigoNcm>29396919</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14081166</codigoProdutoNcm>
+        <nomeProduto>METILERGOMETRINA, MALEATO</nomeProduto>
+        <codigoNcm>29396911</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14091167</codigoProdutoNcm>
+        <nomeProduto>METILETILCETONA</nomeProduto>
+        <codigoNcm>29141200</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14101168</codigoProdutoNcm>
+        <nomeProduto>METILISOBUTILCETONA</nomeProduto>
+        <codigoNcm>29141300</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14111169</codigoProdutoNcm>
+        <nomeProduto>N-HEPTANO (OUTROS)</nomeProduto>
+        <codigoNcm>29011000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14121169</codigoProdutoNcm>
+        <nomeProduto>N-HEPTANO COMERCIAL</nomeProduto>
+        <codigoNcm>27101290</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14131170</codigoProdutoNcm>
+        <nomeProduto>N-HEXANO (OUTROS)</nomeProduto>
+        <codigoNcm>29011000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14141170</codigoProdutoNcm>
+        <nomeProduto>N-HEXANO COMERCIAL</nomeProduto>
+        <codigoNcm>27101210</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14151171</codigoProdutoNcm>
+        <nomeProduto>NITROETANO</nomeProduto>
+        <codigoNcm>29042070</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14161172</codigoProdutoNcm>
+        <nomeProduto>N-METILEFEDRINA, SEUS SAIS E ÉSTERES</nomeProduto>
+        <codigoNcm>29394900</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14171173</codigoProdutoNcm>
+        <nomeProduto>N-METILFORMAMIDA</nomeProduto>
+        <codigoNcm>29241921</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14181174</codigoProdutoNcm>
+        <nomeProduto>N-METILPSEUDOEFEDRINA, SEUS SAIS E ÉSTERES</nomeProduto>
+        <codigoNcm>29394900</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14191175</codigoProdutoNcm>
+        <nomeProduto>ÓLEO DE SASSAFRÁS e outros CONTENDO SAFROL</nomeProduto>
+        <codigoNcm>33012990</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14201176</codigoProdutoNcm>
+        <nomeProduto>ÓLEO DIESEL</nomeProduto>
+        <codigoNcm>27101921</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN14221028</codigoProdutoNcm>
+        <nomeProduto>ÓXIDO DE CÁLCIO (CAL VIVA)</nomeProduto>
+        <codigoNcm>25221000</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN211159</codigoProdutoNcm>
+        <nomeProduto>IODO (Outros)</nomeProduto>
+        <codigoNcm>28012090</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN11128</codigoProdutoNcm>
+        <nomeProduto>CLORETO DE MERCÚRIO II</nomeProduto>
+        <codigoNcm>28521014</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN411188</codigoProdutoNcm>
+        <nomeProduto>1-FENETIL-N-FENILPIPERIDIN-4-AMINA (ANPP)</nomeProduto>
+        <codigoNcm>29333989</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN421189</codigoProdutoNcm>
+        <nomeProduto>N-FENETIL-4-PIPERIDINONA (NPP)</nomeProduto>
+        <codigoNcm>29333989</codigoNcm>
+    </produto>
+    <produto>
+        <codigoProdutoNcm>TPN611143</codigoProdutoNcm>
+        <nomeProduto>ÉTER ETÍLICO</nomeProduto>
+        <codigoNcm>29094411</codigoNcm>
+    </produto>
+</produtos>

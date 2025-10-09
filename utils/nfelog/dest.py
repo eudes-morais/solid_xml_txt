@@ -1,25 +1,25 @@
-def dest(level_dict, razao_social, entrada_saida):
+def dest(level_dict, cnpj_emitente, entrada_saida):
     
     dest = level_dict['dest']
 
     # Razão Social e CNPJ do Destinatário
     nome = dest['xNome'].upper()
-    cnpj = dest['CNPJ']
+    cnpj_destinatario = dest['CNPJ']
 
     if entrada_saida == 'E':
-        if razao_social.upper() == nome:
+        if cnpj_emitente == cnpj_destinatario:
             armazenagem = 'S'
         else:
             armazenagem = 'N'
     else:
-        if razao_social.upper() == nome:
+        if cnpj_emitente == cnpj_destinatario:
             armazenagem = 'F'
         else:
             armazenagem = 'T'
 
     result_dest = {
         'armazenagem': armazenagem,
-        'cnpj': cnpj
+        'cnpj': cnpj_destinatario
     }
 
     return result_dest
