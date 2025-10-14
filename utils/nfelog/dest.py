@@ -5,6 +5,9 @@ def dest(level_dict, cnpj_emitente, entrada_saida):
     # Razão Social e CNPJ do Destinatário
     nome = dest['xNome'].upper()
     cnpj_destinatario = dest['CNPJ']
+    endereco = dest['enderDest']['xLgr'].upper()
+    cep = dest['enderDest']['CEP']
+
 
     if entrada_saida == 'E':
         if cnpj_emitente == cnpj_destinatario:

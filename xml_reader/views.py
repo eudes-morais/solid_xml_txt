@@ -1,6 +1,6 @@
 # xml_reader/views.py
 import xmltodict
-from utils.nfelog import ide, infnfe, emit, dest, transp,det
+from utils.nfelog import ide, infnfe, emit, dest, transp,det,entrega
 from django.shortcuts import render
 from django.http import JsonResponse
 # import xml.etree.ElementTree as ET
@@ -81,16 +81,38 @@ def upload_multiple_xml(request):
                 armazenagem = destinatario['armazenagem']
                 cnpj_destinatario = destinatario['cnpj'] # CNPJ utilizado para verificar o responsável pelo transporte
                 transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_emitente)
-                secao_mvn = f'MVN{entrada_saida}{operacao}{razao_social}{data_emissao_nf}{armazenagem}{transporte}'
+                secao_mvn = f'\nMVN{entrada_saida}{operacao}{razao_social}{data_emissao_nf}{armazenagem}{transporte}'
 
                 # Subseção MM
                 var_det = det.det(infnfe_dict)
                 ncm = var_det['codigo_tpn']
                 quantidade = var_det['quantidade']
                 unidade_medida = var_det['unidade_medida']
-                subsecao_mm = f'MM{ncm}00000,00{quantidade}{unidade_medida}'
+                subsecao_mm = f'\nMM{ncm}00000,00{quantidade}{unidade_medida}'
 
-                txt = f'{secao_em}{secao_mvn}\n{subsecao_mm}'
+                # Subseção MA (pelo meu entendimento, esta seção só existirá se na NFe existir a tag ENTREGA)
+                if infnfe_dict['entrega']:
+                    var_armazenagem = entrega.entrega(infnfe_dict)
+                    cnpj_armazenadora = var_armazenagem['cnpj']
+                    razao_social_armazenadora = var_armazenagem['nome']
+                    razao_social_armazenadora = razao_social_armazenadora.ljust(69)
+                    endereco_armazenadora = var_armazenagem['endereco']
+                    endereco_armazenadora = endereco_armazenadora.ljust(69)
+                    cep_armazenadora = var_armazenagem['cep']
+                    numero_armazenadora = var_armazenagem['numero']                    
+                    complemento_armazenadora = var_armazenagem['complemento']
+                    complemento_armazenadora = complemento_armazenadora.ljust(20)
+                    bairro_armazenadora = var_armazenagem['bairro']
+                    bairro_armazenadora = bairro_armazenadora.ljust(30)
+                    uf_armazenadora = var_armazenagem['uf']
+                    municipio_armazenadora = var_armazenagem['municipio']
+
+                    subsecao_ma = f'\n{cnpj_armazenadora}{razao_social_armazenadora}{endereco_armazenadora}{cep_armazenadora}{numero_armazenadora}{complemento_armazenadora}'
+                    subsecao_ma = f'{subsecao_ma}{bairro_armazenadora}{uf_armazenadora}{municipio_armazenadora}'
+                else:
+                    subsecao_ma = ''
+                    
+                txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
                 print(txt)
 
                 results.append({
