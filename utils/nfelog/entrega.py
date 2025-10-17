@@ -4,7 +4,10 @@ def entrega(level_dict):
     entrega = level_dict['entrega']
 
     # Razão Social e CNPJ do Destinatário
-    nome = entrega['xNome'].upper()
+    if 'xNome' in entrega:
+        nome = entrega['xNome'].upper()
+    else:
+        nome = ''
     cnpj = entrega['CNPJ']
     endereco = entrega['xLgr'].upper()
     cep = entrega['CEP']

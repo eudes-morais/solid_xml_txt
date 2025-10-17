@@ -69,6 +69,7 @@ def upload_multiple_xml(request):
                     var_emit = emit.emit(infnfe_dict)
                     cnpj_emitente = var_emit['cnpj']
                     secao_em = f'EM{cnpj_emitente}{mes}{ano}{list_status}\n'
+                    # print(secao_em)
                 
                 # Seção MVN
                 var_ide = ide.ide(infnfe_dict)
@@ -82,6 +83,7 @@ def upload_multiple_xml(request):
                 cnpj_destinatario = destinatario['cnpj'] # CNPJ utilizado para verificar o responsável pelo transporte
                 transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_emitente)
                 secao_mvn = f'MVN{entrada_saida}{operacao}{razao_social}{data_emissao_nf}{armazenagem}{transporte}'
+                # print(secao_mvn)
 
                 # Subseção MM
                 var_det = det.det(infnfe_dict)
@@ -89,6 +91,7 @@ def upload_multiple_xml(request):
                 quantidade = var_det['quantidade']
                 unidade_medida = var_det['unidade_medida']
                 subsecao_mm = f'\nMM{ncm}00000,00{quantidade}{unidade_medida}'
+                # print(subsecao_mm)
 
                 # Subseção MA (o entendimento aplicado é que esta seção só existirá se na NFe existir a tag ENTREGA)
                 if 'entrega' in infnfe_dict:
@@ -107,10 +110,11 @@ def upload_multiple_xml(request):
                     uf_armazenadora = var_armazenagem['uf']
                     municipio_armazenadora = var_armazenagem['municipio']
 
-                    subsecao_ma = f'\n{cnpj_armazenadora}{razao_social_armazenadora}{endereco_armazenadora}{cep_armazenadora}{numero_armazenadora}{complemento_armazenadora}'
+                    subsecao_ma = f'\nMA{cnpj_armazenadora}{razao_social_armazenadora}{endereco_armazenadora}{cep_armazenadora}{numero_armazenadora}{complemento_armazenadora}'
                     subsecao_ma = f'{subsecao_ma}{bairro_armazenadora}{uf_armazenadora}{municipio_armazenadora}'
                 else:
                     subsecao_ma = ''
+                print(subsecao_ma)
                     
                 txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
                 print(txt)
