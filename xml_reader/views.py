@@ -81,7 +81,7 @@ def upload_multiple_xml(request):
                 armazenagem = destinatario['armazenagem']
                 cnpj_destinatario = destinatario['cnpj'] # CNPJ utilizado para verificar o responsável pelo transporte
                 transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_emitente)
-                secao_mvn = f'\nMVN{entrada_saida}{operacao}{razao_social}{data_emissao_nf}{armazenagem}{transporte}'
+                secao_mvn = f'MVN{entrada_saida}{operacao}{razao_social}{data_emissao_nf}{armazenagem}{transporte}'
 
                 # Subseção MM
                 var_det = det.det(infnfe_dict)
@@ -90,8 +90,8 @@ def upload_multiple_xml(request):
                 unidade_medida = var_det['unidade_medida']
                 subsecao_mm = f'\nMM{ncm}00000,00{quantidade}{unidade_medida}'
 
-                # Subseção MA (pelo meu entendimento, esta seção só existirá se na NFe existir a tag ENTREGA)
-                if infnfe_dict['entrega']:
+                # Subseção MA (o entendimento aplicado é que esta seção só existirá se na NFe existir a tag ENTREGA)
+                if 'entrega' in infnfe_dict:
                     var_armazenagem = entrega.entrega(infnfe_dict)
                     cnpj_armazenadora = var_armazenagem['cnpj']
                     razao_social_armazenadora = var_armazenagem['nome']
@@ -115,10 +115,12 @@ def upload_multiple_xml(request):
                 txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
                 print(txt)
 
+                txt_html = f'<p>{secao_em}</p><p>{secao_mvn}</p><p>{subsecao_mm}</p><p>{subsecao_ma}</p>'
+
                 results.append({
                     'filename': xml_file.name,
                     'success': True,
-                    'xml_content': txt
+                    'xml_content': txt_html
                 })
                     
             except Exception as e:

@@ -31,8 +31,6 @@ def det(infnfe_dict):
         unidade_medida = infnfe_dict['det']['prod']['uCom']
         unidade_medida = unidade_medida[0].upper()
     
-    print(codigo_tpn)
-    
     result_det = {
         'codigo_tpn': codigo_tpn,
         'quantidade': quantidade,
