@@ -3,7 +3,7 @@ import xmltodict
 from utils.nfelog import ide, infnfe, emit, dest, transp,det,entrega
 from django.shortcuts import render
 from django.http import JsonResponse
-# import xml.etree.ElementTree as ET
+from utils.ler_dens_conc import ler_dens_conc
 
 
 def upload_multiple_xml(request):
@@ -18,21 +18,10 @@ def upload_multiple_xml(request):
             'transformacao', 'consumo', 'fabricacao', 'transporte', 'armazenamento'
         ]
 
-        # Cria um dicionário para armazenar o status (0 ou 1) de cada operação
-        # operacoes_status = {
-        #     operacao: request.POST.get(operacao) for operacao in tipos_de_operacao
-        # }
-
         # Armazenando o status de cada operação numa lista
         list_status = ''
         for op in tipos_de_operacao:
             list_status = list_status + request.POST.get(op)
-
-        # Para demonstração, vamos imprimi-los no console do servidor
-        # print(f"Mês recebido: {mes}")
-        # print(f"Ano recebido: {ano}")
-        # print(f"Status das Operações: {list_status}")
-        # --- FIM DA ALTERAÇÃO ---
 
         # request.FILES.getlist() é a chave para obter múltiplos arquivos
         xml_files = request.FILES.getlist('xml_files[]')
@@ -69,7 +58,6 @@ def upload_multiple_xml(request):
                     var_emit = emit.emit(infnfe_dict)
                     cnpj_emitente = var_emit['cnpj']
                     secao_em = f'EM{cnpj_emitente}{mes}{ano}{list_status}\n'
-                    # print(secao_em)
                 
                 # Seção MVN
                 var_ide = ide.ide(infnfe_dict)
@@ -82,16 +70,18 @@ def upload_multiple_xml(request):
                 armazenagem = destinatario['armazenagem']
                 cnpj_destinatario = destinatario['cnpj'] # CNPJ utilizado para verificar o responsável pelo transporte
                 transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_emitente)
-                secao_mvn = f'MVN{entrada_saida}{operacao}{razao_social}{data_emissao_nf}{armazenagem}{transporte}'
-                # print(secao_mvn)
+                secao_mvn = f'MVN{entrada_saida}{operacao}{razao_social}{data_emissao_nf}{armazenagem}{transporte}\n'
 
                 # Subseção MM
                 var_det = det.det(infnfe_dict)
                 ncm = var_det['codigo_tpn']
+                ncm_original = var_det['ncm']
                 quantidade = var_det['quantidade']
                 unidade_medida = var_det['unidade_medida']
-                subsecao_mm = f'\nMM{ncm}00000,00{quantidade}{unidade_medida}'
-                # print(subsecao_mm)
+                dens_conc = ler_dens_conc(cnpj_emitente, ncm_original)
+                densidade = dens_conc['densidade']
+                concentracao = dens_conc['concentracao']
+                subsecao_mm = f'MM{ncm}{concentracao}{densidade}{quantidade}{unidade_medida}'
 
                 # Subseção MA (o entendimento aplicado é que esta seção só existirá se na NFe existir a tag ENTREGA)
                 if 'entrega' in infnfe_dict:
@@ -110,11 +100,12 @@ def upload_multiple_xml(request):
                     uf_armazenadora = var_armazenagem['uf']
                     municipio_armazenadora = var_armazenagem['municipio']
 
-                    subsecao_ma = f'\nMA{cnpj_armazenadora}{razao_social_armazenadora}{endereco_armazenadora}{cep_armazenadora}{numero_armazenadora}{complemento_armazenadora}'
-                    subsecao_ma = f'{subsecao_ma}{bairro_armazenadora}{uf_armazenadora}{municipio_armazenadora}'
+                    subsecao_ma = f'MA{cnpj_armazenadora}{razao_social_armazenadora}{endereco_armazenadora}'
+                    subsecao_ma = f'{subsecao_ma}{cep_armazenadora}{numero_armazenadora}{complemento_armazenadora}'
+                    subsecao_ma = f'{subsecao_ma}{bairro_armazenadora}{uf_armazenadora}{municipio_armazenadora}\n'
                 else:
                     subsecao_ma = ''
-                print(subsecao_ma)
+                # print(subsecao_ma)
                     
                 txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
                 print(txt)

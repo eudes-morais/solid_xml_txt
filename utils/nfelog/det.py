@@ -34,7 +34,8 @@ def det(infnfe_dict):
     result_det = {
         'codigo_tpn': codigo_tpn,
         'quantidade': quantidade,
-        'unidade_medida': unidade_medida
+        'unidade_medida': unidade_medida,
+        'ncm': value_ncm
     }
     
     return result_det
