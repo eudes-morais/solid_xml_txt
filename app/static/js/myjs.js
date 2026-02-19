@@ -76,8 +76,31 @@ cancelButton.addEventListener('click', () => {
 function performUpload(files, mes, ano, operacoes) {
     resultsContainer.innerHTML = '';
     const formData = new FormData();
+
+    // // ======================================== Adiciona o token CSRF do formulário ========================================
+    // const csrfInput = document.querySelector('#modal-form input[name="csrfmiddlewaretoken"]');
+    // if (csrfInput) {
+    //     formData.append('csrfmiddlewaretoken', csrfInput.value);
+    // }
     
-    // Adiciona os dados do modal ao FormData
+    // formData.append('mes', mes);
+    // formData.append('ano', ano);
+    
+    // for (const [operacao, status] of Object.entries(operacoes)) {
+    //     formData.append(operacao, status);
+    // }
+
+    // for (const file of files) {
+    //     formData.append('xml_files[]', file);
+    // }
+
+    // // Não precisa do header X-CSRFToken se está enviando no body
+    // fetch('', {
+    //     method: 'POST',
+    //     body: formData
+    // })
+    
+    // ======================================== Adiciona os dados do modal ao FormData ========================================
     formData.append('mes', mes);
     formData.append('ano', ano);
     
@@ -99,6 +122,16 @@ function performUpload(files, mes, ano, operacoes) {
         body: formData
     })
     .then(response => response.json())
+    .then(data => {
+        if (data.redirect_url) {
+            // Armazena os dados no sessionStorage para recuperar na página de resultados
+            sessionStorage.setItem('resultados', JSON.stringify(data));
+            window.location.href = data.redirect_url;
+        } else {
+            displayResults(data.results);
+            dropZone.textContent = 'Arraste e solte arquivos XML aqui ou clique para selecionar.';
+        }
+    })
     .then(data => {
         console.log('Dados recebidos pelo servidor:', data.dados_recebidos);
         displayResults(data.results);

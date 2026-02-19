@@ -12,7 +12,7 @@ def ler_dens_conc(cnpj, ncm):
 
     # Caso não tenha encontrado resultado
     if not resultado:
-        print(f"Nenhum resultado encontrado para NCM {ncm}")
+        print(f"Nenhum resultado encontrado para NCM {ncm} com o CNPJ {cnpj}")
 
     
     # Caso tenha mais de um resultado    
@@ -20,12 +20,15 @@ def ler_dens_conc(cnpj, ncm):
         print(f'Encontrado mais de um resultado para o mesmo NCM e o mesmo CNPJ:\n{resultado}')
 
     concentracao = str(resultado[0]['Concentração'])
-
     if len(concentracao) < 3:
         concentracao = concentracao.zfill(3)
+    
+    densidade = str(resultado[0]['Densidade'])
+    if len(densidade) < 5:
+        densidade = densidade.zfill(5)
 
     dens_conc = {
-        'densidade': resultado[0]['Densidade'],
+        'densidade': densidade,
         'concentracao': concentracao,
     }
 

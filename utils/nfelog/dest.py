@@ -1,3 +1,5 @@
+from .autxml import cep_format
+
 def dest(level_dict, cnpj_emitente, entrada_saida):
     
     dest = level_dict['dest']
@@ -6,7 +8,12 @@ def dest(level_dict, cnpj_emitente, entrada_saida):
     nome = dest['xNome'].upper()
     cnpj_destinatario = dest['CNPJ']
     endereco = dest['enderDest']['xLgr'].upper()
-    cep = dest['enderDest']['CEP']
+    endereco_numero = dest['enderDest']['nro']
+    endereco_bairro = dest['enderDest']['xBairro']
+    endereco_cod_municipio = dest['enderDest']['cMun']
+    endereco_uf = dest['enderDest']['UF']
+    endereco_cep = dest['enderDest']['CEP']
+    endereco_cep = cep_format(endereco_cep)
 
 
     if entrada_saida == 'E':
@@ -21,6 +28,13 @@ def dest(level_dict, cnpj_emitente, entrada_saida):
             armazenagem = 'T'
 
     result_dest = {
+        'destinatario': nome,
+        'endereco': endereco,
+        'numero': endereco_numero,
+        'bairro': endereco_bairro,
+        'municipio': endereco_cod_municipio,
+        'uf': endereco_uf,
+        'cep': endereco_cep,
         'armazenagem': armazenagem,
         'cnpj': cnpj_destinatario
     }

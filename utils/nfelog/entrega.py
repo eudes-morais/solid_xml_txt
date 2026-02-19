@@ -1,3 +1,5 @@
+from .autxml import cep_format
+
 # def entrega(level_dict, cnpj_emitente, entrada_saida):
 def entrega(level_dict):
     
@@ -10,10 +12,16 @@ def entrega(level_dict):
         nome = ''
     cnpj = entrega['CNPJ']
     endereco = entrega['xLgr'].upper()
-    cep = entrega['CEP']
-    cep = f'{cep[0:2]}.{cep[2:5]}-{cep[5:]}'
+    if 'CEP' in entrega:
+        cep = entrega['CEP']
+        cep = cep_format(cep)
+        # cep = f'{cep[0:2]}.{cep[2:5]}-{cep[5:]}'
+    else:
+        cep = ''
+    # cep = f'{cep[0:2]}.{cep[2:5]}-{cep[5:]}'
+    
     numero = entrega['nro']
-    numero = numero.zfill(5)
+
     if 'xCpl' in entrega:
         complemento = entrega['xCpl']
     else:
