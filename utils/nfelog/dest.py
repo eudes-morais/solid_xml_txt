@@ -1,6 +1,6 @@
 from .autxml import cep_format
 
-def dest(level_dict, cnpj_emitente, entrada_saida):
+def dest(level_dict, cnpj_emitente, entrada_saida, armazenagem_form):
     
     dest = level_dict['dest']
 
@@ -16,13 +16,24 @@ def dest(level_dict, cnpj_emitente, entrada_saida):
     endereco_cep = cep_format(endereco_cep)
 
 
+    # if entrada_saida == 'E':
+    #     if cnpj_emitente == cnpj_destinatario:
+    #         armazenagem = 'S'
+    #     else:
+    #         armazenagem = 'N'
+    # else:
+    #     if cnpj_emitente == cnpj_destinatario:
+    #         armazenagem = 'F'
+    #     else:
+    #         armazenagem = 'T'
+    
     if entrada_saida == 'E':
-        if cnpj_emitente == cnpj_destinatario:
+        if armazenagem_form == 'S':
             armazenagem = 'S'
         else:
             armazenagem = 'N'
     else:
-        if cnpj_emitente == cnpj_destinatario:
+        if armazenagem_form == 'N':
             armazenagem = 'F'
         else:
             armazenagem = 'T'

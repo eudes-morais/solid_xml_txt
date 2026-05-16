@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{% static '/css/styles.css' %}">
 </head>
 <body>
-
     <input type="file" id="file-input" accept=".xml" multiple>
     <div id="drop-zone">
         Arraste e solte arquivos XML aqui ou clique para selecionar.
@@ -51,7 +50,7 @@
                         <div class="input-item"><input type="radio" id="ano2026" name="ano" value="2026"><label for="ano2026">2026</label></div>
                     </div>
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <label>Tipo de Operação:</label>
                     <div class="input-group">
                         <div class="input-item"><input type="checkbox" id="op1" name="tipo_operacao" value="comercializacao_nacional"><label for="op1">Comercialização Nacional</label></div>
@@ -64,6 +63,19 @@
                         <div class="input-item"><input type="checkbox" id="op8" name="tipo_operacao" value="armazenamento"><label for="op8">Armazenamento</label></div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label>Armazenagem:</label>
+                    <div class="input-group">
+                        <div class="input-item">
+                            <input type="radio" id="armazenagem_sim" name="armazenagem" value="S" required>
+                            <label for="armazenagem_sim">Sim</label>
+                        </div>
+                        <div class="input-item">
+                            <input type="radio" id="armazenagem_nao" name="armazenagem" value="N">
+                            <label for="armazenagem_nao">Não</label>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal-actions">
                     <button type="button" id="modal-cancel">Cancelar</button>
                     <button type="submit" id="modal-submit">Confirmar e Enviar</button>
@@ -71,11 +83,9 @@
             </form>
         </div>
     </div>
-
     <div style="text-align: center; margin-top: 30px;">
         <a href="{% url 'resultados' %}" class="botao-resultados">Ir para Página de Resultados</a>
     </div>
-
 <style>
     .botao-resultados {
         display: inline-block;
@@ -103,7 +113,7 @@
     }
 </style>
 
-    <!-- Adicionando JS para execução no HTML -->
-    <script src="{% static 'js/myjs.js' %}"></script>
+<!-- Adicionando JS para execução no HTML -->
+<script src="{% static 'js/myjs.js' %}"></script>
 </body>
 </html>

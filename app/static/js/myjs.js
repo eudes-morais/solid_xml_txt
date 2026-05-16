@@ -45,6 +45,8 @@ modalForm.addEventListener('submit', (e) => {
     // 1. Pega o valor único do radio button selecionado
     const selectedMes = document.querySelector('input[name="mes"]:checked');
     const selectedAno = document.querySelector('input[name="ano"]:checked');
+    // ADICIONE ESTA LINHA ABAIXO:
+    const selectedArmazenagem = document.querySelector('input[name="armazenagem"]:checked');
 
     // 2. Pega TODOS os checkboxes de operação e cria um objeto de status
     const operacoesStatus = {};
@@ -54,9 +56,9 @@ modalForm.addEventListener('submit', (e) => {
         operacoesStatus[checkbox.value] = checkbox.checked ? '1' : '0';
     });
 
-    // 3. Validação: Verifica se Mês e Ano estão selecionados.
-    if (!selectedMes || !selectedAno) {
-        alert('Por favor, selecione uma opção para Mês e Ano.');
+    // 3. Validação: Verifica se Mês, Ano e Armazenagem estão selecionados.
+    if (!selectedMes || !selectedAno || !selectedArmazenagem) {
+        alert('Por favor, selecione as opções de Mês, Ano e/ou Armazenagem.');
         return;
     }
 
@@ -64,7 +66,7 @@ modalForm.addEventListener('submit', (e) => {
     modalForm.reset();
 
     // 4. Envia o valor de Mês/Ano e o objeto de status das operações
-    performUpload(pendingFiles, selectedMes.value, selectedAno.value, operacoesStatus);
+    performUpload(pendingFiles, selectedMes.value, selectedAno.value, selectedArmazenagem.value, operacoesStatus);
 });
 
 cancelButton.addEventListener('click', () => {
@@ -73,7 +75,7 @@ cancelButton.addEventListener('click', () => {
     pendingFiles = null;
 });
 
-function performUpload(files, mes, ano, operacoes) {
+function performUpload(files, mes, ano, armazenagem, operacoes) {
     resultsContainer.innerHTML = '';
     const formData = new FormData();
 
@@ -103,6 +105,7 @@ function performUpload(files, mes, ano, operacoes) {
     // ======================================== Adiciona os dados do modal ao FormData ========================================
     formData.append('mes', mes);
     formData.append('ano', ano);
+    formData.append('armazenagem', armazenagem);
     
     // Adiciona cada operação como um campo separado no FormData
     for (const [operacao, status] of Object.entries(operacoes)) {

@@ -14,9 +14,10 @@ def upload_multiple_xml(request):
              "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"]
     
     if request.method == 'POST':
-        # --- Captura os campos de operação individualmente ---
+        # --- Captura os campos de operação e armazenagem ---
         mes = request.POST.get('mes')
         ano = request.POST.get('ano')
+        armazenagem_form = request.POST.get('armazenagem')
 
         nome_mes = meses[int(mes)]
         
@@ -77,7 +78,7 @@ def upload_multiple_xml(request):
                 # Seção MVN
                 var_ide = ide.ide(infnfe_dict)
                 entrada_saida = var_ide['entrada_saida']
-                var_dest = dest.dest(infnfe_dict, cnpj_emitente, entrada_saida)
+                var_dest = dest.dest(infnfe_dict, cnpj_emitente, entrada_saida, armazenagem_form)
                 operacao = var_ide['operacao']
                 razao_social = var_dest['destinatario']
                 razao_social = razao_social.ljust(69)
