@@ -8,22 +8,25 @@ def ler_dens_conc(cnpj, ncm):
     # Convertendo para lista de dicionários
     dados_lista = df.to_dict(orient='records')
 
-    resultado = [registro for registro in dados_lista if (str(registro['NCM']) == ncm) and (str(registro['CNPJ']) == cnpj) ]
+    resultado = {}
+
+    for registro in dados_lista:
+        if (str(registro['NCM']) == ncm) and (str(registro['CNPJ']) == cnpj):
+            resultado = registro
+    
+    print(f'Resultado: {resultado}\nNCM: {resultado['NCM']}')
+    
+    # Inicializando variáveis que  serão utilizadas tanto dentro como fora da função
+    densidade = '0.0'
+    concentracao = '0'
 
 
     # Caso não tenha encontrado resultado
     if not resultado:
-        print(f"Nenhum resultado encontrado para NCM {ncm} com o CNPJ {cnpj}")
-        resultado = {
-            'NCM': f'{ncm}',
-            'Produto': 'PRODUTO NÃO ENCONTRADO',
-            'CNPJ': f'{cnpj}'
-        }
-        densidade = '0.0'
-        concentracao = '0'
-
-    print(resultado)
+        print(f"Nenhum resultado foi encontrado para NCM {ncm} com o CNPJ {cnpj}")
     
+    
+
     # Caso tenha mais de um resultado    
     if len(resultado) > 1:
         print(f'Resultado:\n{resultado[0]}\n{resultado[1]}')
@@ -32,14 +35,18 @@ def ler_dens_conc(cnpj, ncm):
     concentracao = str(resultado[0]['Concentração'])
     if len(concentracao) < 3:
         concentracao = concentracao.zfill(3)
+    print(f'COncentração: {concentracao}')
     
     densidade = str(resultado[0]['Densidade'])
     if len(densidade) < 5:
         densidade = densidade.zfill(5)
+    print(f'Densidade: {densidade}')
 
     dens_conc = {
         'densidade': densidade,
         'concentracao': concentracao,
     }
+
+    print(dens_conc)
 
     return dens_conc

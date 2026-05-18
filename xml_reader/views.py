@@ -168,9 +168,7 @@ def upload_multiple_xml(request):
         
         # Garante que a sessão seja salva
         request.session.modified = True
-
-        print(results, arquivo_txt_unico)
-
+        
         # Redireciona para a página de resultados
         return JsonResponse({
             'success': True,
