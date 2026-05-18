@@ -128,9 +128,10 @@ def upload_multiple_xml(request):
                     subsecao_ma = f'\nMA{cnpj_armazenadora}{razao_social_armazenadora}{endereco_armazenadora}'
                     subsecao_ma = f'{subsecao_ma}{cep_armazenadora}{numero_armazenadora}{complemento_armazenadora}'
                     subsecao_ma = f'{subsecao_ma}{bairro_armazenadora}{uf_armazenadora}{municipio_armazenadora}'
-                    conteudo_txt_completo += subsecao_ma
                 else:
                     subsecao_ma = ''
+
+                conteudo_txt_completo += subsecao_ma
                 
                 txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
                 txt_filename = f'M{ano}{nome_mes}{cnpj_emitente}.txt'
@@ -167,6 +168,8 @@ def upload_multiple_xml(request):
         
         # Garante que a sessão seja salva
         request.session.modified = True
+
+        print(results, arquivo_txt_unico)
 
         # Redireciona para a página de resultados
         return JsonResponse({

@@ -10,7 +10,6 @@ def ler_dens_conc(cnpj, ncm):
 
     resultado = [registro for registro in dados_lista if (str(registro['NCM']) == ncm) and (str(registro['CNPJ']) == cnpj) ]
 
-    print(resultado)
 
     # Caso não tenha encontrado resultado
     if not resultado:
@@ -18,15 +17,16 @@ def ler_dens_conc(cnpj, ncm):
         resultado = {
             'NCM': f'{ncm}',
             'Produto': 'PRODUTO NÃO ENCONTRADO',
-            'Concentração': 00,
-            'Densidade': 0.00,
             'CNPJ': f'{cnpj}'
         }
+        densidade = '0.0'
+        concentracao = '0'
 
     print(resultado)
     
     # Caso tenha mais de um resultado    
     if len(resultado) > 1:
+        print(f'Resultado:\n{resultado[0]}\n{resultado[1]}')
         print(f'Encontrado mais de um resultado para o mesmo NCM e o mesmo CNPJ:\n{resultado}')
 
     concentracao = str(resultado[0]['Concentração'])
