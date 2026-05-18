@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados do Processamento</title>
+    <style>
+        /* Mesmo CSS anterior */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .info-box {
+            background-color: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .info-box p {
+            margin: 5px 0;
+        }
+        .download-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+        }
+        .results-list {
+            margin-top: 20px;
+        }
+        .result-item {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .result-header {
+            background-color: #f8f9fa;
+            padding: 10px 15px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .result-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .result-header .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .badge-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .badge-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .result-content {
+            padding: 15px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .result-actions {
+            padding: 10px 15px;
+            background-color: #fff;
+        }
+        .error-message {
+            color: #dc3545;
+            padding: 15px;
+            margin: 0;
+        }
+        .back-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .back-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 18px;
+        }
+        .file-info {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados do Processamento</h1>
+        
+        {% if dados_recebidos and results %}
+            <!-- Informações recebidas -->
+            <div class="info-box">
+                <h3>Informações do Processamento:</h3>
+                <p><strong>Mês:</strong> {{ dados_recebidos.mes }}</p>
+                <p><strong>Ano:</strong> {{ dados_recebidos.ano }}</p>
+                <p><strong>Status das Operações:</strong> {{ dados_recebidos.operacoes_status }}</p>
+                <p><strong>Total de arquivos XML processados:</strong> {{ results|length }}</p>
+                <p><strong>Arquivos com sucesso:</strong> 
+                    {% for result in results %}
+                        {% if result.success %}
+                            {% if forloop.counter0 > 0 %}, {% endif %}
+                            {{ result.filename }}
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </div>
+
+            <!-- Seção de Download - Agora com UM ÚNICO ARQUIVO -->
+            {% if txt_contents %}
+            <div class="download-section">
+                <h3>Arquivo Gerado</h3>
+                <p>Foi gerado <strong>1 arquivo .txt</strong> contendo todos os dados processados.</p>
+                <p class="file-info">O arquivo contém as informações de todos os {{ results|length }} arquivo(s) XML processados.</p>
+                
+                <div class="download-buttons">
+                    {% for txt in txt_contents %}
+                    <a href="{% url 'download_txt' forloop.counter0 %}" class="btn btn-success">
+                        📥 Download do Arquivo Completo ({{ txt.filename }})
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Lista de resultados (apenas para visualização) -->
+            <div class="results-list">
+                <h3>Detalhamento dos Arquivos Processados</h3>
+                
+                {% for result in results %}
+                <div class="result-item">
+                    <div class="result-header">
+                        <h3>Arquivo: {{ result.filename }}</h3>
+                        {% if result.success %}
+                        <span class="badge badge-success">SUCESSO</span>
+                        {% else %}
+                        <span class="badge badge-error">ERRO</span>
+                        {% endif %}
+                    </div>
+                    
+                    {% if result.success %}
+                    <div class="result-content">
+                        {{ result.xml_content|safe }}
+                    </div>
+                    {% else %}
+                    <div class="error-message">
+                        <strong>Erro:</strong> {{ result.error }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-data">
+                <p>Nenhum dado processado encontrado.</p>
+                <p>Faça o upload de arquivos XML primeiro.</p>
+                <a href="{% url 'upload_multiple_xml' %}" class="btn btn-primary">Voltar para Upload</a>
+            </div>
+        {% endif %}
+
+        <!-- Link para voltar -->
+        <div class="back-link">
+            <a href="{% url 'upload_multiple_xml' %}">← Voltar para a página de upload</a>
+        </div>
+    </div>
+
+<script>
+    // Recupera os dados do sessionStorage
+    const dadosStr = sessionStorage.getItem('resultados');
+    if (dadosStr) {
+        const dados = JSON.parse(dadosStr);
+        // Aqui você pode usar os dados para preencher a página
+        console.log('Dados recuperados:', dados);
+        
+        // Opcional: limpar o sessionStorage após usar
+        // sessionStorage.removeItem('resultados');
+    }
+</script>
+</body>
+</html>
