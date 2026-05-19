@@ -1,7 +1,6 @@
 import pandas as pd
 
 def ler_dens_conc(cnpj, ncm):
-
     # Lendo o arquivo mantendo o cabeçalho original
     df = pd.read_excel('app/media/densidade_concentracao.xlsx')
 
@@ -14,18 +13,14 @@ def ler_dens_conc(cnpj, ncm):
         if (str(registro['NCM']) == ncm) and (str(registro['CNPJ']) == cnpj):
             resultado = registro
     
-    print(f'Resultado: {resultado}\nNCM: {resultado['NCM']}')
+    if resultado == {}:
+        print(f"Nenhum resultado foi encontrado para NCM {ncm} com o CNPJ {cnpj}")
+    else:
+        print(f"Resultado: {resultado}")
     
     # Inicializando variáveis que  serão utilizadas tanto dentro como fora da função
     densidade = '0.0'
     concentracao = '0'
-
-
-    # Caso não tenha encontrado resultado
-    if not resultado:
-        print(f"Nenhum resultado foi encontrado para NCM {ncm} com o CNPJ {cnpj}")
-    
-    
 
     # Caso tenha mais de um resultado    
     if len(resultado) > 1:
