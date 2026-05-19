@@ -136,10 +136,11 @@ def upload_multiple_xml(request):
                 txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
                 txt_filename = f'M{ano}{nome_mes}{cnpj_emitente}.txt'
                 
-                txt_html = f'<p>{secao_em}</p><p>{secao_mvn}</p><p>{subsecao_mm}</p><p>{subsecao_ma}</p>'
+                # txt_html = f'<p>{secao_em}</p><p>{secao_mvn}</p><p>{subsecao_mm}</p><p>{subsecao_ma}</p>'
+                txt_html = f'<br>{secao_em}<br/>{secao_mvn}<br/>{subsecao_mm}<br/>{subsecao_ma}'
 
                 results.append({
-                    'filename': xml_file.name,
+                    'filename': txt_filename,
                     'success': True,
                     'xml_content': txt_html
                 })
@@ -149,11 +150,11 @@ def upload_multiple_xml(request):
                     'filename': xml_file.name,
                     'error': f'Ocorreu um erro inesperado: {str(e)}'
                 })
-
+        
         # Gera um único arquivo TXT com todo o conteúdo
-        nome_arquivo_txt = f"dados_processados_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+        # nome_arquivo_txt = f"dados_processados_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
         arquivo_txt_unico = [{
-            'filename': nome_arquivo_txt,
+            'filename': results[0]['filename'],
             'content': conteudo_txt_completo
         }]
 

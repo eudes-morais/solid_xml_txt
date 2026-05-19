@@ -3,7 +3,7 @@ def emit(level_dict):
     emit = level_dict['emit']
 
     # EM e MVN - CNPJ Adquirente/Fornec
-    cnpj = emit['CNPJ']
+    cnpj = str(emit['CNPJ'])
 
     # MVN - Razão Social Adq/Fornec
     razao_social = emit['xNome']
