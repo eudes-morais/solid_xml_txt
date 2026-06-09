@@ -15,7 +15,7 @@ def upload_multiple_xml(request):
     
     if request.method == 'POST':        
         # --- Captura os campos CNPJ, operação e armazenagem ---
-        cnpj_form = request.POST.get('cnpj_empresa')
+        cnpj = request.POST.get('cnpj_empresa')
         mes = request.POST.get('mes')
         ano = request.POST.get('ano')
         armazenagem_form = request.POST.get('armazenagem')
@@ -71,14 +71,14 @@ def upload_multiple_xml(request):
                 secao_em = ''
                 if indice == 1:
                     # Seção EM
-                    cnpj_declarante = cnpj_form
-                    secao_em = f'EM{cnpj_declarante}{mes}{ano}{list_status}'
+                    secao_em = f'EM{cnpj}{mes}{ano}{list_status}'
                     conteudo_txt_completo += secao_em
                 
+                # ========================= Começar a reescrever daqui !!!!!!! =========================
                 # Seção MVN
                 var_ide = ide.ide(infnfe_dict)
                 entrada_saida = var_ide['entrada_saida']
-                var_dest = dest.dest(infnfe_dict, cnpj_emitente, entrada_saida, armazenagem_form)
+                var_dest = dest.dest(infnfe_dict, cnpj_declarante, entrada_saida, armazenagem_form)
                 operacao = var_ide['operacao']
                 razao_social = var_dest['destinatario']
                 razao_social = razao_social.ljust(69)
@@ -86,7 +86,7 @@ def upload_multiple_xml(request):
                 numero_nf = var_ide['numero_nf']
                 data_emissao_nf = var_ide['data_emissao_nf']
                 armazenagem = var_dest['armazenagem']
-                transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_emitente)
+                transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_declarante)
                 secao_mvn = f'\nMVN{entrada_saida}{operacao}{cnpj_destinatario}{razao_social}{numero_nf}{data_emissao_nf}{armazenagem}{transporte}'
                 conteudo_txt_completo += secao_mvn
 
@@ -96,7 +96,7 @@ def upload_multiple_xml(request):
                 ncm_original = var_det['ncm']
                 quantidade = var_det['quantidade']
                 unidade_medida = var_det['unidade_medida']
-                dens_conc = ler_dens_conc(cnpj_emitente, ncm_original)
+                dens_conc = ler_dens_conc(cnpj_declarante, ncm_original)
                 densidade = dens_conc['densidade']
                 concentracao = dens_conc['concentracao']
                 subsecao_mm = f'\nMM{ncm}{concentracao}{densidade}{quantidade}{unidade_medida}'
@@ -134,7 +134,7 @@ def upload_multiple_xml(request):
                 conteudo_txt_completo += subsecao_ma
                 
                 txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
-                txt_filename = f'M{ano}{nome_mes}{cnpj_emitente}.txt'
+                txt_filename = f'M{ano}{nome_mes}{cnpj_declarante}.txt'
                 
                 # txt_html = f'<p>{secao_em}</p><p>{secao_mvn}</p><p>{subsecao_mm}</p><p>{subsecao_ma}</p>'
                 txt_html = f'<br>{secao_em}<br/>{secao_mvn}<br/>{subsecao_mm}<br/>{subsecao_ma}'
