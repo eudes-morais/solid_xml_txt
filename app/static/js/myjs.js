@@ -42,6 +42,9 @@ function handleFiles(files) {
 modalForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    // NOVO: Pega o valor do CNPJ
+    const cnpjEmpresa = document.getElementById('cnpj_empresa').value.trim();
+
     // 1. Pega o valor único do radio button selecionado
     const selectedMes = document.querySelector('input[name="mes"]:checked');
     const selectedAno = document.querySelector('input[name="ano"]:checked');
@@ -57,8 +60,8 @@ modalForm.addEventListener('submit', (e) => {
     });
 
     // 3. Validação: Verifica se Mês, Ano e Armazenagem estão selecionados.
-    if (!selectedMes || !selectedAno || !selectedArmazenagem) {
-        alert('Por favor, selecione as opções de Mês, Ano e/ou Armazenagem.');
+    if (!cnpjEmpresa || !selectedMes || !selectedAno || !selectedArmazenagem) {
+        alert('Por favor, um dos campos (CNPJ, Mês, Ano e/ou Armazenagem) deixou de ser selecionado e/ou preeenchido');
         return;
     }
 
@@ -66,7 +69,7 @@ modalForm.addEventListener('submit', (e) => {
     modalForm.reset();
 
     // 4. Envia o valor de Mês/Ano e o objeto de status das operações
-    performUpload(pendingFiles, selectedMes.value, selectedAno.value, selectedArmazenagem.value, operacoesStatus);
+    performUpload(pendingFiles, cnpjEmpresa, selectedMes.value, selectedAno.value, selectedArmazenagem.value, operacoesStatus);
 });
 
 cancelButton.addEventListener('click', () => {
@@ -75,34 +78,12 @@ cancelButton.addEventListener('click', () => {
     pendingFiles = null;
 });
 
-function performUpload(files, mes, ano, armazenagem, operacoes) {
+function performUpload(files, cnpjEmpresa, mes, ano, armazenagem, operacoes) {
     resultsContainer.innerHTML = '';
     const formData = new FormData();
-
-    // // ======================================== Adiciona o token CSRF do formulário ========================================
-    // const csrfInput = document.querySelector('#modal-form input[name="csrfmiddlewaretoken"]');
-    // if (csrfInput) {
-    //     formData.append('csrfmiddlewaretoken', csrfInput.value);
-    // }
-    
-    // formData.append('mes', mes);
-    // formData.append('ano', ano);
-    
-    // for (const [operacao, status] of Object.entries(operacoes)) {
-    //     formData.append(operacao, status);
-    // }
-
-    // for (const file of files) {
-    //     formData.append('xml_files[]', file);
-    // }
-
-    // // Não precisa do header X-CSRFToken se está enviando no body
-    // fetch('', {
-    //     method: 'POST',
-    //     body: formData
-    // })
     
     // ======================================== Adiciona os dados do modal ao FormData ========================================
+    formData.append('cnpj_empresa', cnpjEmpresa);
     formData.append('mes', mes);
     formData.append('ano', ano);
     formData.append('armazenagem', armazenagem);

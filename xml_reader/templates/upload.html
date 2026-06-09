@@ -25,6 +25,15 @@
                 <!-- Solução mais confiável, garantindo que o token CSRF está sendo enviado junto com os dados do formulário, seguindo o padrão do Django. -->
                 {% csrf_token %}
                 <div class="form-group">
+                    <label>CNPJ da Empresa:</label>
+                    <div class="input-group">
+                        <div class="input-item" style="width: 100%;">
+                            <input type="text" id="cnpj_empresa" name="cnpj_empresa" placeholder="Digite o CNPJ (apenas números)" pattern="[0-9]{14}" maxlength="14" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                            <small style="display: block; color: #666; margin-top: 5px;">Digite apenas números (14 dígitos)</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label>Mês:</label>
                     <div class="input-group">
                         <div class="input-item"><input type="radio" id="mes1" name="mes" value="1" required><label for="mes1">Jan</label></div>

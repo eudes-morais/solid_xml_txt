@@ -13,8 +13,9 @@ def upload_multiple_xml(request):
     meses = ["", "JAN", "FEV", "MAR", "ABR", "MAI", "JUN", 
              "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"]
     
-    if request.method == 'POST':
-        # --- Captura os campos de operação e armazenagem ---
+    if request.method == 'POST':        
+        # --- Captura os campos CNPJ, operação e armazenagem ---
+        cnpj_form = request.POST.get('cnpj_empresa')
         mes = request.POST.get('mes')
         ano = request.POST.get('ano')
         armazenagem_form = request.POST.get('armazenagem')
@@ -70,9 +71,8 @@ def upload_multiple_xml(request):
                 secao_em = ''
                 if indice == 1:
                     # Seção EM
-                    var_emit = emit.emit(infnfe_dict)
-                    cnpj_emitente = var_emit['cnpj']
-                    secao_em = f'EM{cnpj_emitente}{mes}{ano}{list_status}'
+                    cnpj_declarante = cnpj_form
+                    secao_em = f'EM{cnpj_declarante}{mes}{ano}{list_status}'
                     conteudo_txt_completo += secao_em
                 
                 # Seção MVN
