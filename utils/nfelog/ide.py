@@ -1,25 +1,26 @@
-def ide(level_dict):
+def ide(level_dict, entrada_saida, tipo_declarante):
     
     ide = level_dict['ide']
 
-    # MVN - Entrada-Saída
-    entrada_saida = 'E' if ide['tpNF'] == '0' else 'S'
-
     # MVN - Operação
-    for palavra in ide['natOp'].split():
-        if entrada_saida == 'E':
-            if (palavra.upper() == 'COMPRA' or palavra.upper() == 'TRANSFERÊNCIA' or palavra.upper() == 'DOAÇÃO' or palavra.upper() == 'ARMAZENADO'
-                or palavra.upper() == 'INDUSTRIALIZADO' or palavra.upper() == 'INDUSTRIALIZAÇÃO'):
+    if entrada_saida == 'E':
+        for palavra in ide['natOp'].split():
+            if palavra.upper() in ('COMPRA', 'TRANSFERÊNCIA', 'DOAÇÃO', 'ARMAZENADO', 'INDUSTRIALIZADO', 'INDUSTRIALIZAÇÃO'):
                 operacao = palavra[0].upper()
-                break
-            operacao = 'R'
+            else:
+                if tipo_declarante == 'destinatario':
+                    operacao = 'C'
+                else:
+                    operacao = 'R'            
+            break
             
-        else:
-            if (palavra.upper() == 'VENDA' or palavra.upper() == 'TRANSFERÊNCIA' or palavra.upper() == 'DOAÇÃO' or palavra.upper() == 'ARMAZENADO' 
-                or palavra.upper() == 'INDUSTRIALIZADO' or palavra.upper() == 'INDUSTRIALIZAÇÃO' or palavra.upper() == 'ARMAZENAGEM'):
+        
+    else:
+        for palavra in ide['natOp'].split():
+            if palavra.upper() in('VENDA', 'TRANSFERÊNCIA', 'DOAÇÃO', 'ARMAZENADO', 'INDUSTRIALIZADO', 'INDUSTRIALIZAÇÃO', 'ARMAZENAGEM'):
                 operacao = palavra[0].upper()
                 break
-            operacao = 'S'
+            operacao = 'O'
 
     # MVN - Número NF
     numero_nf = ide['nNF']

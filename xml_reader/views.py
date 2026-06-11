@@ -62,23 +62,49 @@ def upload_multiple_xml(request):
                 # Use xmltodict to parse and convert the XML document
                 dict_created = xmltodict.parse(file_content)
                 
+                # Aqui se verifica qual é o tipo de NFe. Se ela inicia com nfeProc ou NFeLog
+                # As NFs que a SOLID recebe são do tipo NFeLog versão 1.00 com ID versão 4.00
                 if list(dict_created)[0] == 'nfeProc':
-                    infnfe_dict = dict_created['nfeProc']['NFe']['infNFe']  # NF da SOLID
+                    infnfe_dict = dict_created['nfeProc']['NFe']['infNFe']  
                 else:
-                    infnfe_dict = dict_created['NFeLog']['procNFe']['NFe']['infNFe']  # NF da SOLID
+                    infnfe_dict = dict_created['NFeLog']['procNFe']['NFe']['infNFe']  
 
                 # Lê a primeira NF inserida para extrair as informações para a seção EM (apenas no primeiro arquivo)
+                # Seção EM
                 secao_em = ''
                 if indice == 1:
-                    # Seção EM
                     secao_em = f'EM{cnpj}{mes}{ano}{list_status}'
                     conteudo_txt_completo += secao_em
                 
-                # ========================= Começar a reescrever daqui !!!!!!! =========================
                 # Seção MVN
-                var_ide = ide.ide(infnfe_dict)
+                # Diferente da abordagem utilizada anteriormente, aqui se verifica se o CNPJ digitado na tela modal
+                # é do emitente ou do destinatário. Com esta informação, se define se a NF é de entrada ou saída
+                emitente = emit.emit(infnfe_dict)
+                destinatario = dest.dest_info(infnfe_dict)
+
+                # Este deverá ser o emitente ou o destinatário. Ele é o responsável pela informação da NF
+                # Segue também a inicialização de algumas variáveis do declarante
+                declarante = []
+                tipo_declarante = ''
+                entrada_saida = ''
+
+                # Verifica se o CNPJ digitado é da empresa que será gerado o TXT
+                if cnpj not in(emitente['cnpj'],destinatario['cnpj']):
+                    raise RuntimeError("CNPJ inválido")
+                else:
+                    if cnpj == emitente['cnpj']:
+                        tipo_declarante = 'emitente'
+                        declarante = emitente.copy()
+                        entrada_saida = 'S'
+
+                    else:
+                        tipo_declarante = 'destinatario'
+                        declarante = destinatario.copy()
+                        entrada_saida = 'E'
+                
+                var_ide = ide.ide(infnfe_dict, entrada_saida, tipo_declarante)
                 entrada_saida = var_ide['entrada_saida']
-                var_dest = dest.dest(infnfe_dict, cnpj_declarante, entrada_saida, armazenagem_form)
+                var_dest = dest.dest(infnfe_dict, entrada_saida, armazenagem_form)
                 operacao = var_ide['operacao']
                 razao_social = var_dest['destinatario']
                 razao_social = razao_social.ljust(69)
@@ -144,7 +170,13 @@ def upload_multiple_xml(request):
                     'success': True,
                     'xml_content': txt_html
                 })
-                    
+
+            except RuntimeError as e:
+                results.append({
+                    'filename': xml_file.name,
+                    'error': f'O CNPJ digitado é inválido'
+                })
+
             except Exception as e:
                 results.append({
                     'filename': xml_file.name,
