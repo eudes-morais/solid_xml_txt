@@ -1,4 +1,4 @@
-def transp(level_dict, cnpj_dest, cnpj_emit):
+def transp(level_dict):
     
     transp = level_dict['transp']
 
@@ -18,10 +18,5 @@ def transp(level_dict, cnpj_dest, cnpj_emit):
         transporte = 'A'
     else: # ['modFrete'] == '2':
         transporte = 'T'
-
-    # result_emit = {
-    #     'cnpj': cnpj,
-    #     'razao_social': razao_social,
-    # }
 
     return transporte

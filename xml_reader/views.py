@@ -80,7 +80,7 @@ def upload_multiple_xml(request):
                 # Diferente da abordagem utilizada anteriormente, aqui se verifica se o CNPJ digitado na tela modal
                 # é do emitente ou do destinatário. Com esta informação, se define se a NF é de entrada ou saída
                 emitente = emit.emit(infnfe_dict)
-                destinatario = dest.dest_info(infnfe_dict)
+                destinatario = dest.dest(infnfe_dict)
 
                 # Este deverá ser o emitente ou o destinatário. Ele é o responsável pela informação da NF
                 # Segue também a inicialização de algumas variáveis do declarante
@@ -96,24 +96,27 @@ def upload_multiple_xml(request):
                         tipo_declarante = 'emitente'
                         declarante = emitente.copy()
                         entrada_saida = 'S'
+                        if armazenagem_form == 'S':
+                            armazenagem = 'F'
+                        else:
+                            armazenagem = 'T'
 
                     else:
                         tipo_declarante = 'destinatario'
                         declarante = destinatario.copy()
                         entrada_saida = 'E'
-                
-                var_ide = ide.ide(infnfe_dict, entrada_saida, tipo_declarante)
-                entrada_saida = var_ide['entrada_saida']
-                var_dest = dest.dest(infnfe_dict, entrada_saida, armazenagem_form)
+                        armazenagem = armazenagem_form
+                        
+                var_ide = ide.ide(infnfe_dict, tipo_declarante)
                 operacao = var_ide['operacao']
-                razao_social = var_dest['destinatario']
+                razao_social = declarante['razao_social']
                 razao_social = razao_social.ljust(69)
-                cnpj_destinatario = var_dest['cnpj']  # CNPJ utilizado para verificar o responsável pelo transporte
+                cnpj_declarante = declarante['cnpj']
                 numero_nf = var_ide['numero_nf']
                 data_emissao_nf = var_ide['data_emissao_nf']
-                armazenagem = var_dest['armazenagem']
-                transporte = transp.transp(infnfe_dict, cnpj_destinatario, cnpj_declarante)
-                secao_mvn = f'\nMVN{entrada_saida}{operacao}{cnpj_destinatario}{razao_social}{numero_nf}{data_emissao_nf}{armazenagem}{transporte}'
+                armazenagem = armazenagem
+                transporte = transp.transp(infnfe_dict)
+                secao_mvn = f'\nMVN{entrada_saida}{operacao}{cnpj_declarante}{razao_social}{numero_nf}{data_emissao_nf}{armazenagem}{transporte}'
                 conteudo_txt_completo += secao_mvn
 
                 # Subseção MM
@@ -122,7 +125,7 @@ def upload_multiple_xml(request):
                 ncm_original = var_det['ncm']
                 quantidade = var_det['quantidade']
                 unidade_medida = var_det['unidade_medida']
-                dens_conc = ler_dens_conc(cnpj_declarante, ncm_original)
+                dens_conc = ler_dens_conc(cnpj, ncm_original)
                 densidade = dens_conc['densidade']
                 concentracao = dens_conc['concentracao']
                 subsecao_mm = f'\nMM{ncm}{concentracao}{densidade}{quantidade}{unidade_medida}'
@@ -133,14 +136,14 @@ def upload_multiple_xml(request):
                     var_entrega = entrega.entrega(infnfe_dict)
                     cnpj_armazenadora = var_entrega['cnpj']
                     razao_social_armazenadora = var_entrega['nome']
-                    if not razao_social_armazenadora:
-                        razao_social_armazenadora = var_dest['destinatario']
+                    # if not razao_social_armazenadora:
+                    #     razao_social_armazenadora = var_dest['destinatario']
                     razao_social_armazenadora = razao_social_armazenadora.ljust(70)
                     endereco_armazenadora = var_entrega['endereco']
                     endereco_armazenadora = endereco_armazenadora.ljust(70)
                     cep_armazenadora = var_entrega['cep']
-                    if not cep_armazenadora:
-                        cep_armazenadora = var_dest['cep']
+                    # if not cep_armazenadora:
+                    #     cep_armazenadora = var_dest['cep']
                     cep_armazenadora = cep_armazenadora.ljust(10)
                     numero_armazenadora = var_entrega['numero']
                     numero_armazenadora = numero_armazenadora.ljust(5)
@@ -159,11 +162,11 @@ def upload_multiple_xml(request):
 
                 conteudo_txt_completo += subsecao_ma
                 
-                txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
-                txt_filename = f'M{ano}{nome_mes}{cnpj_declarante}.txt'
+                # txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
+                txt_filename = f'M{ano}{nome_mes}{cnpj}.txt'
                 
-                # txt_html = f'<p>{secao_em}</p><p>{secao_mvn}</p><p>{subsecao_mm}</p><p>{subsecao_ma}</p>'
-                txt_html = f'<br>{secao_em}<br/>{secao_mvn}<br/>{subsecao_mm}<br/>{subsecao_ma}'
+                txt_html = f'<p>{secao_em}<br/>{subsecao_mm}<br/>{subsecao_ma}'
+                # txt_html = f'<br>{secao_em}<br/>{secao_mvn}<br/>{subsecao_mm}<br/>{subsecao_ma}'
 
                 results.append({
                     'filename': txt_filename,
