@@ -168,7 +168,8 @@ def upload_multiple_xml(request):
                     conteudo_txt_completo += subsecao_mt
 
                 ################################################ Subseção MA ################################################
-                # (o entendimento aplicado é que esta seção só existirá se na NFe existir a tag ENTREGA)
+                # O entendimento aplicado é que esta seção só existirá se na NFe tiver a tag ENTREGA,
+                # que significa um endereço de entrega diferente do endereço da empresa declarante
                 if 'entrega' in infnfe_dict:
                     var_entrega = entrega.entrega(infnfe_dict)
                     cnpj_armazenadora = var_entrega['cnpj']
