@@ -16,7 +16,7 @@ def dest(level_dict):
     endereco_cep = cep_format(endereco_cep)
     
     result_dest = {
-        'destinatario': nome,
+        'razao_social': nome,
         'endereco': endereco,
         'numero': endereco_numero,
         'bairro': endereco_bairro,

@@ -70,13 +70,13 @@ def upload_multiple_xml(request):
                     infnfe_dict = dict_created['NFeLog']['procNFe']['NFe']['infNFe']  
 
                 # Lê a primeira NF inserida para extrair as informações para a seção EM (apenas no primeiro arquivo)
-                # Seção EM
+                ################################################ Seção EM ################################################
                 secao_em = ''
                 if indice == 1:
                     secao_em = f'EM{cnpj}{mes}{ano}{list_status}'
                     conteudo_txt_completo += secao_em
                 
-                # Seção MVN
+                ################################################ Seção MVN ################################################
                 # Diferente da abordagem utilizada anteriormente, aqui se verifica se o CNPJ digitado na tela modal
                 # é do emitente ou do destinatário. Com esta informação, se define se a NF é de entrada ou saída
                 emitente = emit.emit(infnfe_dict)
@@ -87,6 +87,7 @@ def upload_multiple_xml(request):
                 declarante = []
                 tipo_declarante = ''
                 entrada_saida = ''
+                transporte = ''
 
                 # Verifica se o CNPJ digitado é da empresa que será gerado o TXT
                 if cnpj not in(emitente['cnpj'],destinatario['cnpj']):
@@ -95,27 +96,38 @@ def upload_multiple_xml(request):
                     if cnpj == emitente['cnpj']:
                         tipo_declarante = 'emitente'
                         declarante = emitente.copy()
+                        adquirente_fornecedor = destinatario.copy()
                         entrada_saida = 'S'
+
+                        # Armazenagem
                         if armazenagem_form == 'S':
                             armazenagem = 'F'
                         else:
                             armazenagem = 'T'
+                        transporte = 'F'
 
                     else:
                         tipo_declarante = 'destinatario'
                         declarante = destinatario.copy()
+                        adquirente_fornecedor = emitente.copy()
                         entrada_saida = 'E'
                         armazenagem = armazenagem_form
+                        transporte = 'A'
+
+                # Verificação de caso especial do transporte. Quando o transporte é feito por terceiros
+                if 'transp' in infnfe_dict:
+                    transporte = 'T'
                         
                 var_ide = ide.ide(infnfe_dict, tipo_declarante)
                 operacao = var_ide['operacao']
-                razao_social = declarante['razao_social']
+                operacao = f'{entrada_saida}{operacao}'
+                razao_social = adquirente_fornecedor['razao_social']
                 razao_social = razao_social.ljust(69)
-                cnpj_declarante = declarante['cnpj']
+                cnpj_declarante = adquirente_fornecedor['cnpj']
                 numero_nf = var_ide['numero_nf']
                 data_emissao_nf = var_ide['data_emissao_nf']
-                armazenagem = armazenagem
-                transporte = transp.transp(infnfe_dict)
+                # armazenagem = armazenagem
+                # transporte = transp.transp(infnfe_dict)
                 secao_mvn = f'\nMVN{entrada_saida}{operacao}{cnpj_declarante}{razao_social}{numero_nf}{data_emissao_nf}{armazenagem}{transporte}'
                 conteudo_txt_completo += secao_mvn
 
@@ -130,6 +142,15 @@ def upload_multiple_xml(request):
                 concentracao = dens_conc['concentracao']
                 subsecao_mm = f'\nMM{ncm}{concentracao}{densidade}{quantidade}{unidade_medida}'
                 conteudo_txt_completo += subsecao_mm
+
+                # Subseção MT
+                if transporte == 'T':
+                    var_transp = transp.transp(infnfe_dict)
+                    cnpj_transportadora = var_transp['cnpj']
+                    razao_social_transportadora = var_transp['razao_social']
+                    razao_social_transportadora = razao_social_transportadora.ljust(69)
+                    subsecao_mt = f'\nMT{cnpj_transportadora}{razao_social_transportadora}'
+                    conteudo_txt_completo += subsecao_mt
 
                 # Subseção MA (o entendimento aplicado é que esta seção só existirá se na NFe existir a tag ENTREGA)
                 if 'entrega' in infnfe_dict:
@@ -161,12 +182,8 @@ def upload_multiple_xml(request):
                     subsecao_ma = ''
 
                 conteudo_txt_completo += subsecao_ma
-                
-                # txt = f'{secao_em}{secao_mvn}{subsecao_mm}{subsecao_ma}'
                 txt_filename = f'M{ano}{nome_mes}{cnpj}.txt'
-                
-                txt_html = f'<p>{secao_em}<br/>{subsecao_mm}<br/>{subsecao_ma}'
-                # txt_html = f'<br>{secao_em}<br/>{secao_mvn}<br/>{subsecao_mm}<br/>{subsecao_ma}'
+                txt_html = f'<br>{secao_em}<br/>{secao_mvn}<br/>{subsecao_mm}<br/>{subsecao_ma}'
 
                 results.append({
                     'filename': txt_filename,

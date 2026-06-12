@@ -1,6 +1,6 @@
 def transp(level_dict):
     
-    transp = level_dict['transp']
+    transp = level_dict['transp']['transporta']
 
     # Transforma o dicionário numa lista e retira o elemento q se deseja. Neste caso é a tag TRANSPORTA
     # if list(transp)[1] == 'transporta':
@@ -12,11 +12,16 @@ def transp(level_dict):
     # 4 (transporte próprio por conta do destinatário) e
     # 9 (sem ocorrência de transporte). 
 
-    if transp['modFrete'] == '0' or transp['modFrete'] == '3':
-        transporte = 'F'
-    elif transp['modFrete'] == '1' or transp['modFrete'] == '4':
-        transporte = 'A'
-    else: # ['modFrete'] == '2':
-        transporte = 'T'
+    # if transp['modFrete'] == '0' or transp['modFrete'] == '3':
+    #     transporte = 'F'
+    # elif transp['modFrete'] == '1' or transp['modFrete'] == '4':
+    #     transporte = 'A'
+    # else: # ['modFrete'] == '2'
+    #     transporte = 'T'
+
+    transporte = {
+        'cnpj': f"{transp['CNPJ']}",
+        'razao_social': f"{transp['xNome']}"
+    }
 
     return transporte
