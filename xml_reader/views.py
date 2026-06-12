@@ -126,24 +126,39 @@ def upload_multiple_xml(request):
                 cnpj_declarante = adquirente_fornecedor['cnpj']
                 numero_nf = var_ide['numero_nf']
                 data_emissao_nf = var_ide['data_emissao_nf']
-                # armazenagem = armazenagem
-                # transporte = transp.transp(infnfe_dict)
                 secao_mvn = f'\nMVN{entrada_saida}{operacao}{cnpj_declarante}{razao_social}{numero_nf}{data_emissao_nf}{armazenagem}{transporte}'
                 conteudo_txt_completo += secao_mvn
 
-                # Subseção MM
-                var_det = det.det(infnfe_dict)
-                ncm = var_det['codigo_tpn']
-                ncm_original = var_det['ncm']
-                quantidade = var_det['quantidade']
-                unidade_medida = var_det['unidade_medida']
-                dens_conc = ler_dens_conc(cnpj, ncm_original)
-                densidade = dens_conc['densidade']
-                concentracao = dens_conc['concentracao']
-                subsecao_mm = f'\nMM{ncm}{concentracao}{densidade}{quantidade}{unidade_medida}'
-                conteudo_txt_completo += subsecao_mm
+                ################################################ Subseção MM ################################################
 
-                # Subseção MT
+                # Inicializando variáveis para evitar erro de variável local
+                subsecao_mm = ''
+                var_det = det.det(infnfe_dict)
+                # Verificando se o quê está vindo de var_det é uma lista de dicionários 
+                # ou apenas um único dicionário
+                if type(var_det) is list:
+                    for dicionario in var_det:
+                        ncm = dicionario['codigo_tpn']
+                        ncm_original = dicionario['ncm']
+                        quantidade = dicionario['quantidade']
+                        unidade_medida = dicionario['unidade_medida']
+                        dens_conc = ler_dens_conc(ncm_original)
+                        densidade = dens_conc['densidade']
+                        concentracao = dens_conc['concentracao']
+                        subsecao_mm = f'{subsecao_mm}\nMM{ncm}{concentracao}{densidade}{quantidade}{unidade_medida}'
+                        conteudo_txt_completo += subsecao_mm
+                else:
+                    ncm = var_det['codigo_tpn']
+                    ncm_original = var_det['ncm']
+                    quantidade = var_det['quantidade']
+                    unidade_medida = var_det['unidade_medida']
+                    dens_conc = ler_dens_conc(ncm_original)
+                    densidade = dens_conc['densidade']
+                    concentracao = dens_conc['concentracao']
+                    subsecao_mm = f'\nMM{ncm}{concentracao}{densidade}{quantidade}{unidade_medida}'
+                    conteudo_txt_completo += subsecao_mm
+
+                ################################################ Subseção MT ################################################
                 if transporte == 'T':
                     var_transp = transp.transp(infnfe_dict)
                     cnpj_transportadora = var_transp['cnpj']
@@ -152,7 +167,8 @@ def upload_multiple_xml(request):
                     subsecao_mt = f'\nMT{cnpj_transportadora}{razao_social_transportadora}'
                     conteudo_txt_completo += subsecao_mt
 
-                # Subseção MA (o entendimento aplicado é que esta seção só existirá se na NFe existir a tag ENTREGA)
+                ################################################ Subseção MA ################################################
+                # (o entendimento aplicado é que esta seção só existirá se na NFe existir a tag ENTREGA)
                 if 'entrega' in infnfe_dict:
                     var_entrega = entrega.entrega(infnfe_dict)
                     cnpj_armazenadora = var_entrega['cnpj']
@@ -183,7 +199,7 @@ def upload_multiple_xml(request):
 
                 conteudo_txt_completo += subsecao_ma
                 txt_filename = f'M{ano}{nome_mes}{cnpj}.txt'
-                txt_html = f'<br>{secao_em}<br/>{secao_mvn}<br/>{subsecao_mm}<br/>{subsecao_ma}'
+                txt_html = f'<br>{secao_em}<br/>{secao_mvn}<br/>{subsecao_mm}<br/>{subsecao_mt}<br/>{subsecao_ma}'
 
                 results.append({
                     'filename': txt_filename,

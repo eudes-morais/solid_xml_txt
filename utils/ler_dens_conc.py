@@ -1,16 +1,16 @@
 import pandas as pd
 
-def ler_dens_conc(cnpj, ncm):
+def ler_dens_conc(ncm):
     # Inicialização de variáveis
     resultado = {}
-    densidade = '0.0'
-    concentracao = '0'
+    densidade = '00,00'
+    concentracao = '000'
 
-    df = pd.read_excel('app/media/densidade_concentracao.xlsx', dtype={'CNPJ': str})
+    df = pd.read_excel('app/media/densidade_concentracao.xlsx')
 
     # Filtrar diretamente no DataFrame (maneira mais eficiente)
     # IMPORTANTE SALIENTAR que o filtro abaixo busca A PRIMEIRA OCORRÊNCIA, logo se houver mais de uma ocorrência o filtro trará somente a primeira!
-    filtro = (df['NCM'].astype(str) == ncm) & (df['CNPJ'] == cnpj)
+    filtro = (df['NCM'].astype(str) == ncm)
 
     df_filtrado = df[filtro]
 
