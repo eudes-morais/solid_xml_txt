@@ -170,9 +170,9 @@ def upload_multiple_xml(request):
                 ################################################ Subseção MA ################################################
                 # O entendimento aplicado é que esta seção só existirá se na NFe tiver a tag ENTREGA,
                 # que significa um endereço de entrega diferente do endereço da empresa declarante
-                if 'entrega' in infnfe_dict:
-                    var_entrega = entrega.entrega(infnfe_dict)
-                    cnpj_armazenadora = var_entrega['cnpj']
+                if armazenagem_form == 'S':
+                    var_entrega = declarante['razao_social']
+                    cnpj_armazenadora = declarante['cnpj']
                     razao_social_armazenadora = var_entrega['nome']
                     # if not razao_social_armazenadora:
                     #     razao_social_armazenadora = var_dest['destinatario']
