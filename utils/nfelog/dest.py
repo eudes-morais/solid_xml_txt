@@ -9,11 +9,12 @@ def dest(level_dict):
     cnpj_destinatario = dest['CNPJ']
     endereco = dest['enderDest']['xLgr'].upper()
     endereco_numero = dest['enderDest']['nro']
-    endereco_bairro = dest['enderDest']['xBairro']
+    endereco_bairro = dest['enderDest']['xBairro'].upper()
     endereco_cod_municipio = dest['enderDest']['cMun']
     endereco_uf = dest['enderDest']['UF']
     endereco_cep = dest['enderDest']['CEP']
     endereco_cep = cep_format(endereco_cep)
+    endereco_complemento = (dest.get('enderEmit', {}).get('xCpl') or '').upper()
     
     result_dest = {
         'razao_social': nome,
@@ -23,7 +24,8 @@ def dest(level_dict):
         'municipio': endereco_cod_municipio,
         'uf': endereco_uf,
         'cep': endereco_cep,
-        'cnpj': cnpj_destinatario
+        'cnpj': cnpj_destinatario,
+        'complemento': endereco_complemento
     }
 
     return result_dest

@@ -82,7 +82,7 @@ def upload_multiple_xml(request):
                 emitente = emit.emit(infnfe_dict)
                 destinatario = dest.dest(infnfe_dict)
 
-                # Este deverá ser o emitente ou o destinatário. Ele é o responsável pela informação da NF
+                # Este deverá ser emitente ou destinatário. Ele é o responsável pela informação da NF
                 # Segue também a inicialização de algumas variáveis do declarante
                 declarante = []
                 tipo_declarante = ''
@@ -168,29 +168,23 @@ def upload_multiple_xml(request):
                     conteudo_txt_completo += subsecao_mt
 
                 ################################################ Subseção MA ################################################
-                # O entendimento aplicado é que esta seção só existirá se na NFe tiver a tag ENTREGA,
-                # que significa um endereço de entrega diferente do endereço da empresa declarante
-                if armazenagem_form == 'S':
-                    var_entrega = declarante['razao_social']
+                # Mudado o entendimento. Esta seção só existirá se for assinalado 'SIM' para a empresa que está sendo feito o XML
+                if armazenagem_form == 'S' and entrada_saida == 'S':
                     cnpj_armazenadora = declarante['cnpj']
-                    razao_social_armazenadora = var_entrega['nome']
-                    # if not razao_social_armazenadora:
-                    #     razao_social_armazenadora = var_dest['destinatario']
+                    razao_social_armazenadora = declarante['razao_social']
                     razao_social_armazenadora = razao_social_armazenadora.ljust(70)
-                    endereco_armazenadora = var_entrega['endereco']
+                    endereco_armazenadora = declarante['endereco']
                     endereco_armazenadora = endereco_armazenadora.ljust(70)
-                    cep_armazenadora = var_entrega['cep']
-                    # if not cep_armazenadora:
-                    #     cep_armazenadora = var_dest['cep']
+                    cep_armazenadora = declarante['cep']
                     cep_armazenadora = cep_armazenadora.ljust(10)
-                    numero_armazenadora = var_entrega['numero']
+                    numero_armazenadora = declarante['numero']
                     numero_armazenadora = numero_armazenadora.ljust(5)
-                    complemento_armazenadora = var_entrega['complemento']
+                    complemento_armazenadora = declarante['complemento']
                     complemento_armazenadora = complemento_armazenadora.ljust(20)
-                    bairro_armazenadora = var_entrega['bairro']
+                    bairro_armazenadora = declarante['bairro']
                     bairro_armazenadora = bairro_armazenadora.ljust(30)
-                    uf_armazenadora = var_entrega['uf']
-                    municipio_armazenadora = var_entrega['municipio']
+                    uf_armazenadora = declarante['uf']
+                    municipio_armazenadora = declarante['municipio']
 
                     subsecao_ma = f'\nMA{cnpj_armazenadora}{razao_social_armazenadora}{endereco_armazenadora}'
                     subsecao_ma = f'{subsecao_ma}{cep_armazenadora}{numero_armazenadora}{complemento_armazenadora}'
