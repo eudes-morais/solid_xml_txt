@@ -115,7 +115,7 @@ def upload_multiple_xml(request):
                         transporte = 'A'
 
                 # Verificação de caso especial do transporte. Quando o transporte é feito por terceiros
-                if 'transp' in infnfe_dict:
+                if ('transp' in infnfe_dict and tipo_declarante == 'emitente'):
                     transporte = 'T'
                         
                 var_ide = ide.ide(infnfe_dict, tipo_declarante)
@@ -159,16 +159,18 @@ def upload_multiple_xml(request):
                     conteudo_txt_completo += subsecao_mm
 
                 ################################################ Subseção MT ################################################
-                if transporte == 'T':
+                if ('transp' in infnfe_dict and tipo_declarante == 'emitente'):
                     var_transp = transp.transp(infnfe_dict)
                     cnpj_transportadora = var_transp['cnpj']
                     razao_social_transportadora = var_transp['razao_social']
                     razao_social_transportadora = razao_social_transportadora.ljust(69)
                     subsecao_mt = f'\nMT{cnpj_transportadora}{razao_social_transportadora}'
                     conteudo_txt_completo += subsecao_mt
+                else:
+                    subsecao_mt = ''
 
                 ################################################ Subseção MA ################################################
-                # Mudado o entendimento. Esta seção só existirá se for assinalado 'SIM' para a empresa que está sendo feito o XML
+                # Mudado o entendimento. Esta seção só existirá se for assinalado 'SIM' para a empresa que está sendo feito o XML.
                 if armazenagem_form == 'S' and entrada_saida == 'S':
                     cnpj_armazenadora = declarante['cnpj']
                     razao_social_armazenadora = declarante['razao_social']
@@ -215,9 +217,9 @@ def upload_multiple_xml(request):
                 })
         
         # Gera um único arquivo TXT com todo o conteúdo
-        # nome_arquivo_txt = f"dados_processados_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
         arquivo_txt_unico = [{
-            'filename': results[0]['filename'],
+            # 'filename': results[0]['filename'],
+            'filename': txt_filename,
             'content': conteudo_txt_completo
         }]
 
