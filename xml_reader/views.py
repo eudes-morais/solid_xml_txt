@@ -73,7 +73,7 @@ def upload_multiple_xml(request):
                 ################################################ Seção EM ################################################
                 secao_em = ''
                 if indice == 1:
-                    secao_em = f'EM{cnpj}{mes}{ano}{list_status}'
+                    secao_em = f'EM{cnpj}{nome_mes}{ano}{list_status}'
                     conteudo_txt_completo += secao_em
                 
                 ################################################ Seção MVN ################################################
@@ -159,7 +159,7 @@ def upload_multiple_xml(request):
                     conteudo_txt_completo += subsecao_mm
 
                 ################################################ Subseção MT ################################################
-                if ('transp' in infnfe_dict and tipo_declarante == 'emitente'):
+                if 'transp' in infnfe_dict:
                     var_transp = transp.transp(infnfe_dict)
                     cnpj_transportadora = var_transp['cnpj']
                     razao_social_transportadora = var_transp['razao_social']

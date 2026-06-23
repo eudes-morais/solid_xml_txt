@@ -18,6 +18,7 @@ def ler_dens_conc(ncm):
         resultado = df_filtrado.iloc[0].to_dict()
         densidade = resultado['Densidade']
         concentracao = resultado['Concentração']
+        concentracao = f'{concentracao:03}'
 
     dens_conc = {
         'densidade': densidade,
