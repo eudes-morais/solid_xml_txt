@@ -163,7 +163,7 @@ def upload_multiple_xml(request):
                     var_transp = transp.transp(infnfe_dict)
                     cnpj_transportadora = var_transp['cnpj']
                     razao_social_transportadora = var_transp['razao_social']
-                    razao_social_transportadora = razao_social_transportadora.ljust(69)
+                    razao_social_transportadora = razao_social_transportadora.ljust(70)
                     subsecao_mt = f'\nMT{cnpj_transportadora}{razao_social_transportadora}'
                     conteudo_txt_completo += subsecao_mt
                 else:
