@@ -73,7 +73,7 @@ def upload_multiple_xml(request):
                 ################################################ Seção EM ################################################
                 secao_em = ''
                 if indice == 1:
-                    secao_em = f'EM{cnpj}{mes}{ano}{list_status}'
+                    secao_em = f'EM{cnpj}{nome_mes}{ano}{list_status}'
                     conteudo_txt_completo += secao_em
                 
                 ################################################ Seção MVN ################################################
@@ -168,12 +168,14 @@ def upload_multiple_xml(request):
                     var_transp = transp.transp(infnfe_dict)
                     cnpj_transportadora = var_transp['cnpj']
                     razao_social_transportadora = var_transp['razao_social']
-                    razao_social_transportadora = razao_social_transportadora.ljust(69)
+                    razao_social_transportadora = razao_social_transportadora.ljust(70)
                     subsecao_mt = f'\nMT{cnpj_transportadora}{razao_social_transportadora}'
                     conteudo_txt_completo += subsecao_mt
+                else:
+                    subsecao_mt = ''
 
                 ################################################ Subseção MA ################################################
-                # Mudado o entendimento. Esta seção só existirá se for assinalado 'SIM' para a empresa que está sendo feito o XML
+                # Mudado o entendimento. Esta seção só existirá se for assinalado 'SIM' para a empresa que está sendo feito o XML.
                 if armazenagem_form == 'S' and entrada_saida == 'S':
                     cnpj_armazenadora = declarante['cnpj']
                     razao_social_armazenadora = declarante['razao_social']
@@ -220,9 +222,9 @@ def upload_multiple_xml(request):
                 })
         
         # Gera um único arquivo TXT com todo o conteúdo
-        # nome_arquivo_txt = f"dados_processados_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
         arquivo_txt_unico = [{
-            'filename': results[0]['filename'],
+            # 'filename': results[0]['filename'],
+            'filename': txt_filename,
             'content': conteudo_txt_completo
         }]
 

@@ -3,5 +3,4 @@ __pycache__/
 *.pyc
 *.sqlite3
 */__pycache__/
-.vscode/
-db.sqlite3
+.vscode
