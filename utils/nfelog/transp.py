@@ -1,9 +1,10 @@
 def transp(level_dict):
-    
-    transp = level_dict['transp']['transporta']
 
-    # Transforma o dicionário numa lista e retira o elemento q se deseja. Neste caso é a tag TRANSPORTA
-    # if list(transp)[1] == 'transporta':
+    # A tag <transporta> pode não existir (ex.: frete sem ocorrência de transporte)
+    transp = level_dict.get('transp', {}).get('transporta', {}) or {}
+
+    # Nem toda NF com <transporta> traz CNPJ/xNome (ex.: transporte próprio).
+    # Usa .get() para não quebrar quando os campos não existirem.
 
     # 0 (CIF - por conta do emitente), 
     # 1 (FOB - por conta do destinatário),
@@ -12,16 +13,9 @@ def transp(level_dict):
     # 4 (transporte próprio por conta do destinatário) e
     # 9 (sem ocorrência de transporte). 
 
-    # if transp['modFrete'] == '0' or transp['modFrete'] == '3':
-    #     transporte = 'F'
-    # elif transp['modFrete'] == '1' or transp['modFrete'] == '4':
-    #     transporte = 'A'
-    # else: # ['modFrete'] == '2'
-    #     transporte = 'T'
-
     transporte = {
-        'cnpj': f"{transp['CNPJ']}",
-        'razao_social': f"{transp['xNome']}"
+        'cnpj': f"{transp.get('CNPJ', '')}",
+        'razao_social': f"{transp.get('xNome', '')}"
     }
 
     return transporte

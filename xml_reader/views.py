@@ -114,8 +114,11 @@ def upload_multiple_xml(request):
                         armazenagem = armazenagem_form
                         transporte = 'A'
 
-                # Verificação de caso especial do transporte. Quando o transporte é feito por terceiros
-                if ('transp' in infnfe_dict and tipo_declarante == 'emitente'):
+                # Verificação de caso especial do transporte. Quando o transporte é feito por terceiros.
+                # A simples presença da tag <transp> não significa frete de terceiros: só há
+                # transportadora (subseção MT) quando existe a tag <transporta> com CNPJ.
+                transporta_dict = infnfe_dict.get('transp', {}).get('transporta', {}) or {}
+                if transporta_dict.get('CNPJ'):
                     transporte = 'T'
                         
                 var_ide = ide.ide(infnfe_dict, tipo_declarante)
@@ -159,7 +162,9 @@ def upload_multiple_xml(request):
                     conteudo_txt_completo += subsecao_mm
 
                 ################################################ Subseção MT ################################################
-                if 'transp' in infnfe_dict:
+                # Inicializa para evitar erro quando não houver transporte de terceiros
+                subsecao_mt = ''
+                if transporte == 'T':
                     var_transp = transp.transp(infnfe_dict)
                     cnpj_transportadora = var_transp['cnpj']
                     razao_social_transportadora = var_transp['razao_social']
